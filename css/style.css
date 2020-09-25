@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'Vinegar Stroke';
+    src: url('../font/VinegarStroke.ttf');
+}
+
 .background {
     background-repeat: no-repeat;
     background-size: cover;
@@ -6,6 +11,9 @@
     position: absolute;
     top: 0;
     left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .redDungeon {
@@ -18,4 +26,88 @@
 
 .jail {
     background-image: url("../img/jail.jpg");
+}
+
+.startScreen {
+    width: 35%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.startScreen img {
+    width: 100%;
+}
+
+.playButton {
+    width: 150px;
+    height: 60px;
+    transform: skew(-15deg);
+    background: #555;
+    border-radius: 10px 15px 25px 40px;
+    background-color: #ec0909;
+    border-color: white;
+    border-style: inset;
+    border-width: .2em .3em .5em .6em;
+    font-size: 2em;
+    font-weight: bolder;
+    color: beige;
+    font-family: 'Vinegar Stroke';
+}
+
+.pulseAnimation {
+    animation: pulse 15s ease 0s infinite;
+}
+
+@keyframes pulse {
+    0% {
+
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Hover button animation */
+
+@-webkit-keyframes growHover {
+    to {
+        -webkit-transform: scale(1.1);
+        transform: scale(1.1);
+    }
+}
+
+@keyframes growHover {
+    to {
+        -webkit-transform: scale(1.1);
+        transform: scale(1.1);
+    }
+}
+
+.growHover {
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+}
+
+.growHover:hover,
+.growHover:focus,
+.growHover:active {
+    -webkit-animation-name: growHover;
+    animation-name: growHover;
+    -webkit-animation-duration: 0.3s;
+    animation-duration: 0.3s;
+    -webkit-animation-timing-function: linear;
+    animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+    -webkit-animation-direction: alternate;
+    animation-direction: alternate;
 }
