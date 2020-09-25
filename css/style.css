@@ -3,6 +3,10 @@
     src: url('../font/VinegarStroke.ttf');
 }
 
+.blurFilter {
+    filter: blur(5px);
+}
+
 .background {
     background-repeat: no-repeat;
     background-size: cover;
@@ -14,6 +18,46 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
+}
+
+.disclaimer {
+    width: 500px;
+    height: 200px;
+    transform: skew(-15deg);
+    background: #555;
+    border-radius: 100px 150px 250px 400px;
+    background-color: #1b75bb;
+    border-color: #ef5a28;
+    border-style: inset;
+    border-width: .4em .6em 1em 1.2em;
+    font-size: 1em;
+    font-weight: bolder;
+    color: beige;
+    font-family: 'Courier New', Courier, monospace;
+    z-index: 100;
+    position: absolute;
+    box-shadow: 0 0 100px 800px rgba(0, 0, 0, 0.534);
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    text-align: justify;
+    vertical-align: middle;
+    line-height: 25px;
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    flex-direction: column;
+}
+
+.disclaimer button{
+    position: relative;
+    bottom: -11px;
+    z-index: 110;
+    font-size: 1.5em;
+    font-weight: lighter;
 }
 
 .redDungeon {
@@ -40,7 +84,7 @@
     width: 100%;
 }
 
-.playButton {
+.crookedButton {
     width: 150px;
     height: 60px;
     transform: skew(-15deg);

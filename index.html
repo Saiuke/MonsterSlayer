@@ -14,12 +14,23 @@
 
 <body>
     <div id="app">
-        <div class="background redDungeon">
-            <div class="startScreen pulseAnimation">
-                <img  src="img/banner.png" alt="" srcset="">
-                <button class="playButton growHover">PLAY</button>
+        <div class="disclaimer">
+            <p>This game is an project still in progress, so, I ask you to have some patience with eventual bugs. I hope you enjoy it.</p>
+            <span>Saiuke</span>
+            <!-- Play Button -->
+            <button class="growHover crookedButton">PROCEED</button>
+        </div>
+        <div class="background redDungeon blurFilter">
+            <div class="startScreen pulseAnimation ">
+                <!-- Game banner -->
+                <img src="img/banner.png" alt="" srcset="">
+                <!-- Play Button -->
+                <button class="crookedButton growHover">PLAY</button>
+                <!-- Background sound -->
+                <video v-if="gameStatus == 'startScreen'" id="dungeonEcho" muted autoplay controls>
+                    <source src="sound/echo.ogg" type="video/ogg">
+                </audio>
             </div>
-
         </div>
     </div>
     <!-- Js personalizado -->
