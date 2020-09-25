@@ -1,1 +1,21 @@
+.background {
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
 
+.redDungeon {
+    background-image: url("../img/red.jpg");
+}
+
+.entrance {
+    background-image: url("../img/entrance.jpg");
+}
+
+.jail {
+    background-image: url("../img/jail.jpg");
+}
