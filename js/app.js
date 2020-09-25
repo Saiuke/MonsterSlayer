@@ -5,6 +5,8 @@ new Vue({
         gameStatus: 'disclaimer',
         backgroundAudio: null,
         blurFilter: true,
+        audioTracks: ["sound/battle.mp3", "sound/dungeon.wav", "sound/echo.ogg"],
+        playList: new Array(),
     },
     computed: {
         flipBlur() {
@@ -13,31 +15,54 @@ new Vue({
             } else {
                 return true;
             }
-        }
+        },
     },
     watch: {
+        //Wacth the gameStatus and make changes accordingly
+        gameStatus() {
 
-    },
-    mounted() {
-        if (this.gameStatus == 'startScreen') {
-            this.backgroundAudio = document.getElementById('dungeonEcho');
-            this.startScreenPlayback();
+            //Background Audio Controler
+
+            //Tracks
+            echoSound = this.playList['echo'];
+            battleSound = this.playList['battle'];
+            dungeonSound = this.playList['dungeon'];
+
+            //Game status DJ
+            if (this.gameStatus == 'startScreen') {
+                echoSound.play();
+                echoSound.loop = true;
+                dungeonSound.play();
+                dungeonSound.loop = true;
+            } else if (this.gameStatus == 'playStage') {
+                battleSound.play();
+                battleSound.loop = true;
+                battleSound.volume = 0.25;
+            }
         }
     },
-    created() {
-
+    mounted() {},
+    created: function () {
+        this.buildPlayList();
     },
     methods: {
 
         /* Background soundtracks and sound effects */
 
-        startScreenPlayback() {
-            if (this.gameStatus == 'startScreen') {
-                console.log(this.backgroundAudio);
+        playAudio(audioTrack) {
+            if (audioTrack) {
+                this.backgroundAudio = audioTrack;
                 this.backgroundAudio.loop = true;
                 this.backgroundAudio.play();
                 console.log('Audio playing');
             }
-        }
+        },
+        buildPlayList() {
+            this.audioTracks.forEach(element => {
+                trackName = element.substring(element.indexOf('/') + 1);
+                trackName = trackName.substring(0, trackName.indexOf('.'));
+                this.playList[trackName] = new Audio(element);
+            });
+        },
     }
 });

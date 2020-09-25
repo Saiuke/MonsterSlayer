@@ -33,15 +33,26 @@
                     <img src=" img/banner.png" alt="" srcset="">
                     <!-- Play Button -->
                     <button class="crookedButton growHover" @click="gameStatus = 'playStage'">PLAY</button>
-                    <!-- Background sound -->
-                    <audio v-if="gameStatus == 'startScreen'" id="dungeonEcho" autoplay loop>
-                        <source src="sound/echo.ogg" type="audio/ogg">
-                    </audio>
-                    <audio v-if="gameStatus == 'startScreen'" id="dungeonEcho" autoplay loop>
-                        <source src="sound/dungeon.wav" type="audio/wav">
-                    </audio>
                 </div>
             </transition>
+        </div>
+
+        <!-- Battle Arena -->
+        <div class="battleArena">
+            <div class="scoreBoard">
+                <div class="scoreHuman"></div>
+                <div class="scoreComputer"></div>
+            </div>
+            <div class="fightingPit">
+                <div class="humanBoard">
+                    <div class="attackPanel">
+                        
+                    </div>
+                </div>
+                <div class="computerBoard">
+                </div>
+            </div>
+            <div class="logBoard"></div>
         </div>
     </div>
     <!-- Js personalizado -->
