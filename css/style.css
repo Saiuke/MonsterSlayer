@@ -5,6 +5,7 @@
 
 .blurFilter {
     filter: blur(5px);
+    opacity: 0.9;
 }
 
 .background {
@@ -52,13 +53,31 @@
     flex-direction: column;
 }
 
-.disclaimer button{
+.disclaimer button {
     position: relative;
     bottom: -11px;
     z-index: 110;
     font-size: 1.5em;
     font-weight: lighter;
 }
+
+/* Fadeout animations */
+
+.fadeAway-enter-active {
+    transition: all .3s ease;
+}
+
+.fadeAway-leave-active {
+    transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+
+.fadeAway-enter,
+.fadeAway-leave-to {
+    transform: translateX(10px);
+    opacity: 0;
+}
+
+/* Image backgrounds */
 
 .redDungeon {
     background-image: url("../img/red.jpg");

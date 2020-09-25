@@ -2,40 +2,42 @@
 new Vue({
     el: '#app',
     data: {
-        gameStatus: 'startScreen',
-        backgroundAudio:null,
+        gameStatus: 'disclaimer',
+        backgroundAudio: null,
+        blurFilter: true,
     },
     computed: {
-
+        flipBlur() {
+            if (this.gameStatus != 'disclaimer') {
+                return this.blurFilter = false;
+            } else {
+                return true;
+            }
+        }
     },
     watch: {
 
     },
-    mounted(){
+    mounted() {
         if (this.gameStatus == 'startScreen') {
             this.backgroundAudio = document.getElementById('dungeonEcho');
             this.startScreenPlayback();
         }
     },
-    created(){
-        
+    created() {
+
     },
     methods: {
 
         /* Background soundtracks and sound effects */
 
-       startScreenPlayback(){
+        startScreenPlayback() {
             if (this.gameStatus == 'startScreen') {
                 console.log(this.backgroundAudio);
                 this.backgroundAudio.loop = true;
+                this.backgroundAudio.play();
+                console.log('Audio playing');
             }
         }
-        
-        /* startSound(sound) {
-            if (sound) {
-                var audio = new Audio(sound);
-                audio.play();
-            }
-        } */
     }
 });
