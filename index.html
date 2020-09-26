@@ -16,8 +16,8 @@
     <div id="app">
         <!-- Disclaimer box -->
         <transition name="fadeAway">
-            <div v-if="gameStatus == 'disclaimer'" class="disclaimer">
-                <p>This game is an project still in progress, so, I ask you to have some patience with eventual bugs. I
+            <div v-if="gameStatus == 'disclaimer'" class="disclaimer" style="display:none !important">
+                <p>This game is a project still in progress, so, I ask you to have some patience with eventual bugs. I
                     hope you enjoy it.</p>
                 <span>Saiuke</span>
                 <!-- Proceed Button -->
@@ -26,7 +26,7 @@
         </transition>
 
         <!-- Start screen banner -->
-        <div class="background redDungeon" :class="{blurFilter: flipBlur}">
+        <div class="background redDungeon" :class="{blurFilter: flipBlur}" style="display:none !important">
             <transition name="fadeAway">
                 <div class="startScreen pulseAnimation" v-if="gameStatus !='playStage'">
                     <!-- Game banner -->
@@ -38,10 +38,14 @@
         </div>
 
         <!-- Battle Arena -->
-        <div class="battleArena">
+        <div class="battleArena background regularDungeon">
             <div class="scoreBoard">
-                <div class="scoreHuman"></div>
-                <div class="scoreComputer"></div>
+                <div class="score scoreHuman">
+                    <div id="healthHuman"></div>
+                </div>
+                <div class="score scoreComputer">
+                    <div id="healthComputer"></div>
+                </div>
             </div>
             <div class="fightingPit">
                 <div class="humanBoard">

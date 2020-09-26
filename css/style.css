@@ -1,7 +1,35 @@
+/* ================
+    FONTS
+   ================ */
+
 @font-face {
     font-family: 'Vinegar Stroke';
     src: url('../font/VinegarStroke.ttf');
 }
+
+/* ================
+    BACKGROUNDS
+   ================ */
+
+.regularDungeon {
+    background-image: url("../img/dungeon.jpg");
+}
+
+.redDungeon {
+    background-image: url("../img/red.jpg");
+}
+
+.entrance {
+    background-image: url("../img/entrance.jpg");
+}
+
+.jail {
+    background-image: url("../img/jail.jpg");
+}
+
+/* ================
+    INITIAL SCREEN
+   ================ */
 
 .blurFilter {
     filter: blur(5px);
@@ -61,44 +89,6 @@
     font-weight: lighter;
 }
 
-/* Fadeout animations */
-
-.fadeAway-enter-active {
-    transition: all .3s ease;
-}
-
-.fadeAway-leave-active {
-    transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
-}
-
-.fadeAway-enter,
-.fadeAway-leave-to {
-    transform: translateX(10px);
-    opacity: 0;
-}
-
-/* Image backgrounds */
-
-.redDungeon {
-    background-image: url("../img/red.jpg");
-}
-
-.entrance {
-    background-image: url("../img/entrance.jpg");
-}
-
-.jail {
-    background-image: url("../img/jail.jpg");
-}
-
-.startScreen {
-    width: 35%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-}
-
 .startScreen img {
     width: 100%;
 }
@@ -118,6 +108,77 @@
     color: beige;
     font-family: 'Vinegar Stroke';
 }
+
+/* ================
+    BATTLE SCREEN
+   ================ */
+
+   .battleArena{
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+   }
+
+   .scoreBoard{
+    align-items: center;
+    justify-content: space-around;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    position: absolute;
+    top: 5%;
+   }
+
+   .score{
+    background: rgb(255,10,10);
+    background: linear-gradient(90deg, rgba(255,10,10,1) 0%, rgba(241,255,0,1) 48%, rgba(0,255,16,1) 100%);
+    height: 30px;
+    width: 30%;
+    border-radius: 15px;
+    border-color: #ffffff;
+    border-style: inset;
+    border-width: .2em .3em .5em .6em;
+    position: relative;
+   }
+
+   #healthHuman{
+       background-color: white;
+       height: 30px;
+       width: 50px;
+       position: absolute;
+       right: 0px;
+       
+   }
+
+/* ================
+    ANIMATIONS
+   ================ */
+
+/* Fadeout animations */
+
+.fadeAway-enter-active {
+    transition: all .3s ease;
+}
+
+.fadeAway-leave-active {
+    transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+
+.fadeAway-enter,
+.fadeAway-leave-to {
+    transform: translateX(10px);
+    opacity: 0;
+}
+
+.startScreen {
+    width: 35%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+/* Fadeout animations */
 
 .pulseAnimation {
     animation: pulse 15s ease 0s infinite;
