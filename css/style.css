@@ -1,4 +1,18 @@
 /* ================
+    GENERAL
+   ================ */
+
+body{
+    cursor:url("../img/finger.png") , pointer !important;
+}
+
+.lousyShadow{
+    -webkit-box-shadow: 5px 5px 5px 2px rgba(0,0,0,0.3);
+    -moz-box-shadow: 5px 5px 5px 2px rgba(0,0,0,0.3);
+    box-shadow: 5px 5px 5px 2px rgba(0,0,0,0.3);
+}
+
+/* ================
     FONTS
    ================ */
 
@@ -107,6 +121,7 @@
     font-weight: bolder;
     color: beige;
     font-family: 'Vinegar Stroke';
+    cursor:url("../img/finger.png") , pointer !important;
 }
 
 /* ================
@@ -190,7 +205,11 @@
 
 .fightingPit .fightingPosition img{
     height: 100%;
-    width: 70%;
+    width: auto;
+}
+
+#avatarHuman img{
+    height: 75%;
 }
 
 .fightingPit .fightingPosition .attackPanel{
@@ -200,7 +219,7 @@
     position: absolute;
     align-items: center;
     justify-content: space-around;
-    bottom: 10%;
+    bottom: -3%;
 }
 
 .attackButton{

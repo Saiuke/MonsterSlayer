@@ -16,7 +16,7 @@
     <div id="app">
         <!-- Disclaimer box -->
         <transition name="fadeAway">
-            <div v-if="gameStatus == 'disclaimer'" class="disclaimer" style="display:none !important">
+            <div class="disclaimer" v-show="gameStatus == 'disclaimer'">
                 <p>This game is a project still in progress, so, I ask you to have some patience with eventual bugs. I
                     hope you enjoy it.</p>
                 <span>Saiuke</span>
@@ -24,43 +24,40 @@
                 <button class="growHover crookedButton" @click="gameStatus = 'startScreen'">PROCEED</button>
             </div>
         </transition>
-
-        <!-- Start screen banner -->
-        <div class="background redDungeon" :class="{blurFilter: flipBlur}" style="display:none !important">
-            <transition name="fadeAway">
-                <div class="startScreen pulseAnimation" v-if="gameStatus !='playStage'">
+            <!-- Start screen banner -->
+            <div class="background redDungeon" :class="{blurFilter: flipBlur}">
+                <div class="startScreen pulseAnimation">
                     <!-- Game banner -->
                     <img src=" img/banner.png" alt="" srcset="">
                     <!-- Play Button -->
                     <button class="crookedButton growHover" @click="gameStatus = 'playStage'">PLAY</button>
                 </div>
-            </transition>
-        </div>
+            </div>
 
         <!-- Battle Arena -->
-        <div class="battleArena background regularDungeon">
+        <div class="battleArena background regularDungeon" v-if="gameStatus == 'playStage'">
             <div class="scoreBoard">
-                <div class="score scoreHuman">
+                <div class="score scoreHuman lousyShadow">
                     <span>{{100 - healthHuman}}%</span>
                     <div id="healthHuman" class="health" :style="[heartMonitorHuman()]">
                     </div>
                 </div>
-                <div class="score scoreComputer">
+                <div class="score scoreComputer lousyShadow">
                     <span>{{100 - healthComputer}}%</span>
                     <div id="healthComputer" class="health" :style="[heartMonitorComputer()]">
                     </div>
                 </div>
             </div>
             <div class="fightingPit">
-                <div class="fightingPosition">
+                <div class="fightingPosition" id="avatarHuman">
                     <img src="img/seller.png" alt="">
                     <div class="attackPanel">
-                        <div class="attackButton" id="attack"></div>
-                        <div class="attackButton" id="defend"></div>
-                        <div class="attackButton" id="potion"></div>
+                        <div class="attackButton lousyShadow" id="attack"></div>
+                        <div class="attackButton lousyShadow" id="defend"></div>
+                        <div class="attackButton lousyShadow" id="potion"></div>
                     </div>
                 </div>
-                <div class="fightingPosition">
+                <div class="fightingPosition" id="avatarComputer">
                     <img src="img/goblin.webp" alt="">
                 </div>
             </div>

@@ -7,8 +7,8 @@ new Vue({
         blurFilter: true,
         audioTracks: ["sound/battle.mp3", "sound/dungeon.wav", "sound/echo.ogg"],
         playList: new Array(),
-        healthHuman:100,
-        healthComputer:100,
+        healthHuman:0,
+        healthComputer:0,
     },
     computed: {
         flipBlur() {
@@ -50,7 +50,7 @@ new Vue({
 
         loopPlay(audioTrack) {
             if (audioTrack) {
-                audioTrack.play;
+                audioTrack.play();
                 audioTrack.loop = true;
             }
         },
