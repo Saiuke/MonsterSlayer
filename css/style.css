@@ -4,6 +4,7 @@
 
 body{
     cursor:url("../img/finger.png") , pointer !important;
+    background-color: black;
 }
 
 .lousyShadow{
@@ -119,6 +120,7 @@ body{
     border-width: .2em .3em .5em .6em;
     font-size: 2em;
     font-weight: bolder;
+    outline:none;
     color: beige;
     font-family: 'Vinegar Stroke';
     cursor:url("../img/finger.png") , pointer !important;
@@ -301,7 +303,6 @@ body{
 .growHover {
     -webkit-transform: perspective(1px) translateZ(0);
     transform: perspective(1px) translateZ(0);
-    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
 }
 
 .growHover:hover,

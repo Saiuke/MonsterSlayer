@@ -16,12 +16,12 @@
     <div id="app">
         <!-- Disclaimer box -->
         <transition name="fadeAway">
-            <div class="disclaimer" v-show="gameStatus == 'disclaimer'">
+            <div class="disclaimer lousyShadow" v-show="gameStatus == 'disclaimer'">
                 <p>This game is a project still in progress, so, I ask you to have some patience with eventual bugs. I
                     hope you enjoy it.</p>
                 <span>Saiuke</span>
                 <!-- Proceed Button -->
-                <button class="growHover crookedButton" @click="gameStatus = 'startScreen'">PROCEED</button>
+                <button class="growHover crookedButton lousyShadow" @click="gameStatus = 'startScreen'">PROCEED</button>
             </div>
         </transition>
             <!-- Start screen banner -->
@@ -30,7 +30,7 @@
                     <!-- Game banner -->
                     <img src=" img/banner.png" alt="" srcset="">
                     <!-- Play Button -->
-                    <button class="crookedButton growHover" @click="gameStatus = 'playStage'">PLAY</button>
+                    <button class="crookedButton growHover lousyShadow" @click="gameStatus = 'playStage'">PLAY</button>
                 </div>
             </div>
 
