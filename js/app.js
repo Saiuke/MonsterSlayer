@@ -3,12 +3,13 @@ new Vue({
     el: '#app',
     data: {
         gameStatus: 'disclaimer',
-        backgroundAudio: null,
+        backgroundAudio: new Array(),
         blurFilter: true,
         audioTracks: ["sound/battle.mp3", "sound/dungeon.wav", "sound/echo.ogg"],
         playList: new Array(),
         healthHuman:0,
         healthComputer:0,
+        muted: false,
     },
     computed: {
         flipBlur() {
@@ -38,6 +39,18 @@ new Vue({
                 this.loopPlay(battleSound);
                 battleSound.volume = 0.25;
             }
+        },
+
+        muted(){
+            if (this.muted) {
+                this.backgroundAudio.forEach(element => {
+                    element.pause();
+                });
+            }else{
+                this.backgroundAudio.forEach(element => {
+                    element.play();
+                });
+            }
         }
     },
     mounted() {},
@@ -52,6 +65,7 @@ new Vue({
             if (audioTrack) {
                 audioTrack.play();
                 audioTrack.loop = true;
+                this.backgroundAudio.push(audioTrack);
             }
         },
 

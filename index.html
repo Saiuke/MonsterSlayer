@@ -35,7 +35,15 @@
             </div>
 
         <!-- Battle Arena -->
+
         <div class="battleArena background regularDungeon" v-if="gameStatus == 'playStage'">
+
+            <!-- Mute and unmute button -->
+            
+            <div class="muteButton crookedButton lousyShadow growHover" @click="muted = !muted">
+                <img src="img/speaker.svg" title="Unmute" v-if="muted == false">
+                <img src="img/mute.svg" title="Mute icon" v-else>
+            </div>
             <div class="scoreBoard">
                 <div class="score scoreHuman lousyShadow">
                     <span>{{100 - healthHuman}}%</span>

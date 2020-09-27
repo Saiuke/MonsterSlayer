@@ -130,6 +130,25 @@ body{
     BATTLE SCREEN
    ================ */
 
+/* Mute and unmute buttons */
+
+.muteButton{
+    position: absolute;
+    left: 20px;
+    top: 45%;
+    height: 50px;
+    width: 50px;
+    z-index: 200;
+}
+
+.muteButton img{
+    height: 80%;
+    width: 80%;
+    position: absolute;
+    top: 5px;
+    left: 6px;
+}
+
 .battleArena {
     align-items: center;
     justify-content: space-around;
@@ -233,6 +252,10 @@ body{
     border-color: #ffffff;
     border-style: inset;
     border-width: .2em .3em .5em .6em;
+}
+
+.attackButton:active{
+    box-shadow: inset 5px 5px 5px 2px rgba(0,0,0,0.3);
 }
 
 /* ================
