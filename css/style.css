@@ -138,6 +138,7 @@ body{
     top: 45%;
     height: 50px;
     width: 50px;
+    border-width: .1em .15em .3em .3em;
     z-index: 200;
 }
 
