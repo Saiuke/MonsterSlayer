@@ -167,6 +167,30 @@
     z-index: 150;
 }
 
+/* Players images */
+
+.fightingPit{
+    align-items: center;
+    justify-content: space-around;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    position: absolute;
+    top: 30%;
+}
+
+.fightingPit .fightingPosition{
+    height: 65vh;
+    width: 35vw;
+    align-items: center;
+    justify-content: space-around;
+    display: flex;
+}
+
+.fightingPit .fightingPosition img{
+    height: 100%;
+    width: 70%;
+}
 
 /* ================
     ANIMATIONS
