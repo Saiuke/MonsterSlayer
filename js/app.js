@@ -42,7 +42,7 @@ new Vue({
         },
 
         muted(){
-            if (this.muted) {
+            if (this.muted == true) {
                 this.backgroundAudio.forEach(element => {
                     element.pause();
                 });
