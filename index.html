@@ -41,10 +41,14 @@
         <div class="battleArena background regularDungeon">
             <div class="scoreBoard">
                 <div class="score scoreHuman">
-                    <div id="healthHuman"></div>
+                    <span>{{100 - healthHuman}}%</span>
+                    <div id="healthHuman" class="health" :style="[heartMonitorHuman()]">
+                    </div>
                 </div>
                 <div class="score scoreComputer">
-                    <div id="healthComputer"></div>
+                    <span>{{100 - healthComputer}}%</span>
+                    <div id="healthComputer" class="health" :style="[heartMonitorComputer()]">
+                    </div>
                 </div>
             </div>
             <div class="fightingPit">

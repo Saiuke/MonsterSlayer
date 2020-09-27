@@ -7,6 +7,8 @@ new Vue({
         blurFilter: true,
         audioTracks: ["sound/battle.mp3", "sound/dungeon.wav", "sound/echo.ogg"],
         playList: new Array(),
+        healthHuman:100,
+        healthComputer:100,
     },
     computed: {
         flipBlur() {
@@ -30,13 +32,10 @@ new Vue({
 
             //Game status DJ
             if (this.gameStatus == 'startScreen') {
-                echoSound.play();
-                echoSound.loop = true;
-                dungeonSound.play();
-                dungeonSound.loop = true;
+                this.loopPlay(echoSound);
+                this.loopPlay(dungeonSound);
             } else if (this.gameStatus == 'playStage') {
-                battleSound.play();
-                battleSound.loop = true;
+                this.loopPlay(battleSound);
                 battleSound.volume = 0.25;
             }
         }
@@ -49,14 +48,13 @@ new Vue({
 
         /* Background soundtracks and sound effects */
 
-        playAudio(audioTrack) {
+        loopPlay(audioTrack) {
             if (audioTrack) {
-                this.backgroundAudio = audioTrack;
-                this.backgroundAudio.loop = true;
-                this.backgroundAudio.play();
-                console.log('Audio playing');
+                audioTrack.play;
+                audioTrack.loop = true;
             }
         },
+
         buildPlayList() {
             this.audioTracks.forEach(element => {
                 trackName = element.substring(element.indexOf('/') + 1);
@@ -64,5 +62,19 @@ new Vue({
                 this.playList[trackName] = new Audio(element);
             });
         },
+
+        /* HP monitoring and controller */
+        
+        heartMonitorHuman(){
+            return {
+				width: this.healthHuman + '%'
+			}
+        },
+
+        heartMonitorComputer(){
+            return {
+				width: this.healthComputer + '%'
+			}
+        }
     }
 });
