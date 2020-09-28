@@ -19,6 +19,34 @@ new Vue({
         willHitPoints: 0, //How many hit points the function has to deal before next turn
         humanStatus: true, //Defines if the human player is dead or alive
         computerStatus: true, //Defines if the computer player is dead or alive
+
+        /* Collection of string that are outputed when a avatar dies */
+        humanDiesPhrases =
+        [
+            "You've just been killed and that's why you're seeing your own life flash in front of you.",
+            "It's almost as if your soul has taken over your body in a frantic attempt to preserve the memory of what you love.",
+            "The problem is that when your soul leaves your body, it's physically incapable of going back in and if it doesn't try to go back in and make the same decision, it could start experiencing the same things all over again.",
+            "That was sad and gruesome and an almost poetic way. Anyway, you're dead. The rats are anxious to eat your remains.",
+            "Looks like the monster will be eating something besides rats today",
+            "Woow! That must have hurted! Dude! Are you okay? Dude? Dude... Ohh, you're dead. Sorry about that",
+            "Your death looks like an abstract painting. To me, not for you. For you that must have hurted like hell.",
+            "Yep! Looks like you're dead. Can I have your sowrd?",
+            "You died! Was killed to be more exact. Now your opponent drags you to one of many dark pits inside the dungeon.",
+            "Oh my god, how can you suck in such idiotic game? I know that the game is lame, but you just raised the bar fella.",
+        ],
+        computerDiesPhrases =
+        [
+            "You've just killed it! Or should I say him? Or her? You didn't ask, did you? How considerate of you.",
+            "GG mah boy, keep it like this and I'm sure you're going places. Maybe...",
+            "Wow that was 2 minutes less of your life, how does it feel? You're not having those back... Are you still reading?",
+            "Oh my, my... Why such violence? Have you considered petting it? Maybe it was just saying hello. Weirdo.",
+            "Well, it's dead. Now what? Are you going to eat it? Of course not silly, this is just a game. Back to being productive",
+            "Is it me being nossy or you should be doind something else instead? I mean, killing virtual monsters?",
+            "Good kill dude! Now eat it...",
+            "You've just killed the creature! Good for you girl!",
+            "Wait! Have you considered trying to... Forget it, it's dead already",
+            "Oh man! (or woman!). That was gruesome. Wait a minute, have you just farted? Ewww!"
+        ],
     },
     computed: {
 
@@ -195,7 +223,7 @@ new Vue({
             this.hitTimer = null;
         },
 
-        /* Kills the avatars */
+        /* Shows phrases regarding the avatar's deaths */
 
         humanDied() {
             if (this.humanStatus == false) {
