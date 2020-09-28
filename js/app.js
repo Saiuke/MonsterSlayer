@@ -2,16 +2,28 @@
 new Vue({
     el: '#app',
     data: {
-        gameStatus: 'disclaimer',
-        backgroundAudio: new Array(),
-        blurFilter: true,
-        audioTracks: ["sound/battle.mp3", "sound/dungeon.wav", "sound/echo.ogg"],
-        playList: new Array(),
-        healthHuman:0,
-        healthComputer:0,
-        muted: false,
+        gameStatus: 'disclaimer', //Status of the app, it can be (so far) 'disclaimer', 'startScreen', 'playStage', 'looseScreen', 'wonScreen', 'menuScreen'
+        backgroundAudio: new Array(), //Array of current playing background sounds
+        blurFilter: true, //Blur shown at the start of the app
+        audioTracks: ["sound/battle.mp3", "sound/dungeon.wav", "sound/echo.ogg"], //List of file in the folder 'sound'
+        playList: new Array(), //Array with a collection of Audio objects that are playable
+        /* 
+        The health points function in an inverse way. The subject dies when it reaches 100
+        The health bar div width % is calculated subtracting the current health of the avatar of 100. 
+        */
+        healthHuman: 0, 
+        healthComputer: 0,
+        muted: false, //Obviously determines if the audio is activated or not
+        hitTimer: null, //This variable stores the timer that reduces the health bar div. This is made using a timer so that the transition is smoother.
+        hitCounter: 0, //How many hit points the function has dealt in this turn
+        willHitPoints: 0, //How many hit points the function has to deal before next turn
+        humanStatus: true, //Defines if the human player is dead or alive
+        computerStatus: true, //Defines if the computer player is dead or alive
     },
     computed: {
+
+        /* Unset the blur when the disclaimer modal goes away */
+
         flipBlur() {
             if (this.gameStatus != 'disclaimer') {
                 return this.blurFilter = false;
@@ -41,15 +53,48 @@ new Vue({
             }
         },
 
-        muted(){
+        muted() {
             if (this.muted == true) {
                 this.backgroundAudio.forEach(element => {
                     element.pause();
                 });
-            }else{
+            } else {
                 this.backgroundAudio.forEach(element => {
                     element.play();
                 });
+            }
+        },
+
+        /* Hit Timers */
+
+        /* This function makes sure that the health bar don't go further than the hit points generated. To do so the function stops the hitTimer */
+
+        hitCounter() {
+            if (this.hitCounter == this.willHitPoints) {
+                clearInterval(this.hitTimer);
+                this.clearHitter();
+            }
+        },
+
+        /* Health checkers // Killer */
+
+        healthHuman() {
+            if (this.healthHuman >= 100) {
+                this.humanStatus = false;
+                //Nulls the remaining hit points and hit counter
+                clearInterval(this.hitTimer);
+                this.clearHitter();
+                this.humanDied();
+            }
+        },
+
+        healthComputer() {
+            if (this.healthComputer >= 100) {
+                this.computerStatus = false;
+                //Nulls the remaining hit points and hit counter
+                clearInterval(this.hitTimer);
+                this.clearHitter();
+                this.computerDied();
             }
         }
     },
@@ -78,17 +123,91 @@ new Vue({
         },
 
         /* HP monitoring and controller */
-        
-        heartMonitorHuman(){
+
+        heartMonitorHuman() {
             return {
-				width: this.healthHuman + '%'
-			}
+                width: this.healthHuman + '%'
+            }
         },
 
-        heartMonitorComputer(){
+        heartMonitorComputer() {
             return {
-				width: this.healthComputer + '%'
-			}
+                width: this.healthComputer + '%'
+            }
+        },
+        /* Generates random hit points */
+        hitGenerator() {
+            var hit = Math.round(Math.random() * 10);
+            return hit;
+        },
+
+        /* Hits the human */
+        hitHuman() {
+            if (this.healthHuman < 100 && this.hitTimer == null) {
+                var hitPoints = this.hitGenerator();
+                this.willHitPoints = hitPoints;
+
+                /* This particular snippet makes the health bar lower in a smooth way */
+
+                this.hitTimer = setInterval(() => {
+                    this.hitCounter++;
+                    this.healthHuman++;
+                }, 50);
+                console.log('Human got hit and lost: ' + hitPoints + ' hit points.');
+            } else {
+                if (this.humanStatus == false) {
+                    console.log("That's dead meat, there is no point beating it anymore.");
+                    this.humanDied();
+                } else {
+                    console.log("Savage, just savage!");
+                }
+            }
+        },
+
+        //Hits the computer
+        hitComputer() {
+            if (this.healthComputer < 100 && this.hitTimer == null) {
+                var hitPoints = this.hitGenerator();
+                this.willHitPoints = hitPoints;
+
+                /* This particular snippet makes the health bar lower in a smooth way */
+
+                this.hitTimer = setInterval(() => {
+                    this.hitCounter++;
+                    this.healthComputer++;
+                }, 50);
+                console.log('The "monster" got hit and lost: ' + hitPoints + ' hit points.');
+            } else {
+                if (this.computerStatus == false) {
+                    console.log("You've just killed it, there is no point beating it anymore, or maybe you're the real monster here.");
+                    this.computerDied();
+                } else {
+                    console.log("You're too tired, take a breath and recover some energy before hitting again you potato's sack");
+                }
+            }
+        },
+
+        //Clears the hitCounter and hitTimer
+
+        clearHitter() {
+            this.willHitPoints = 0;
+            this.hitCounter = 0;
+            this.hitTimer = null;
+        },
+
+        /* Kills the avatars */
+
+        humanDied() {
+            if (this.humanStatus == false) {
+                console.log('You are dead, like your dreams.');
+            }
+        },
+
+        computerDied() {
+            if (this.computerStatus == false) {
+                console.log('You killed him, or her, as always you did not ask.');
+            }
         }
+
     }
 });
