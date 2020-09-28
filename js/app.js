@@ -42,10 +42,10 @@ new Vue({
             "Oh my, my... Why such violence? Have you considered petting it? Maybe it was just saying hello. Weirdo.",
             "Well, it's dead. Now what? Are you going to eat it? Of course not silly, this is just a game. Back to being productive",
             "Is it me being nossy or you should be doind something else instead? I mean, killing virtual monsters?",
-            "Good kill dude! Now eat it...",
+            "Good kill dude! But, have you considered that it maybe was the last of its kind? That's disturbing.",
             "You've just killed the creature! Good for you girl!",
             "Wait! Have you considered trying to... Forget it, it's dead already",
-            "Oh man! (or woman!). That was gruesome. Wait a minute, have you just farted? Ewww!"
+            "Oh man! (or woman!). That was gruesome. Wait a minute, have you just farted? Ewww! Ohh sorry, that one was mine."
         ],
     },
     computed: {
