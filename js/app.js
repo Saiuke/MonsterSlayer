@@ -21,7 +21,7 @@ new Vue({
         computerStatus: true, //Defines if the computer player is dead or alive
 
         /* Collection of string that are outputed when a avatar dies */
-        humanDiesPhrases =
+        humanDiesPhrases:
         [
             "You've just been killed and that's why you're seeing your own life flash in front of you.",
             "It's almost as if your soul has taken over your body in a frantic attempt to preserve the memory of what you love.",
@@ -34,7 +34,7 @@ new Vue({
             "You died! Was killed to be more exact. Now your opponent drags you to one of many dark pits inside the dungeon.",
             "Oh my god, how can you suck in such idiotic game? I know that the game is lame, but you just raised the bar fella.",
         ],
-        computerDiesPhrases =
+        computerDiesPhrases:
         [
             "You've just killed it! Or should I say him? Or her? You didn't ask, did you? How considerate of you.",
             "GG mah boy, keep it like this and I'm sure you're going places. Maybe...",
