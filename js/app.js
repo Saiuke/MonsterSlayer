@@ -174,16 +174,19 @@ new Vue({
         /* Hits the human */
         hitHuman() {
             if (this.healthHuman < 100 && this.hitTimer == null) {
-                var hitPoints = this.hitGenerator();
-                this.willHitPoints = hitPoints;
+                this.willHitPoints = this.hitGenerator();
 
                 /* This particular snippet makes the health bar lower in a smooth way */
 
-                this.hitTimer = setInterval(() => {
-                    this.hitCounter++;
-                    this.healthHuman++;
-                }, 50);
-                console.log('Human got hit and lost: ' + hitPoints + ' hit points.');
+                if(this.willHitPoints != 0){
+                    this.hitTimer = setInterval(() => {
+                        this.hitCounter++;
+                        this.healthComputer++;
+                    }, 50);
+                }
+
+                console.log('Human got hit and lost: ' + this.willHitPoints + ' hit points.');
+
             } else {
                 if (this.humanStatus == false) {
                     console.log("That's dead meat, there is no point beating it anymore.");
@@ -197,16 +200,19 @@ new Vue({
         //Hits the computer
         hitComputer() {
             if (this.healthComputer < 100 && this.hitTimer == null) {
-                var hitPoints = this.hitGenerator();
-                this.willHitPoints = hitPoints;
-
+                this.willHitPoints = this.hitGenerator();
+                
                 /* This particular snippet makes the health bar lower in a smooth way */
 
-                this.hitTimer = setInterval(() => {
-                    this.hitCounter++;
-                    this.healthComputer++;
-                }, 50);
-                console.log('The "monster" got hit and lost: ' + hitPoints + ' hit points.');
+                if(this.willHitPoints != 0){
+                    this.hitTimer = setInterval(() => {
+                        this.hitCounter++;
+                        this.healthComputer++;
+                    }, 50);
+                }
+                
+                console.log('The "monster" got hit and lost: ' + this.willHitPoints + ' hit points.');
+
             } else {
                 if (this.computerStatus == false) {
                     console.log("You've just killed it, there is no point beating it anymore, or maybe you're the real monster here.");
