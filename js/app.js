@@ -33,6 +33,7 @@ new Vue({
             "Yep! Looks like you're dead. Can I have your sowrd?",
             "You died! Was killed to be more exact. Now your opponent drags you to one of many dark pits inside the dungeon.",
             "Oh my god, how can you suck in such idiotic game? I know that the game is lame, but you just raised the bar fella.",
+            "You're not very good at this are you? Have you ever considered trying gardening?"
         ],
         computerDiesPhrases:
         [
@@ -45,7 +46,8 @@ new Vue({
             "Good kill dude! But, have you considered that it maybe was the last of its kind? That's disturbing.",
             "You've just killed the creature! Good for you girl!",
             "Wait! Have you considered trying to... Forget it, it's dead already",
-            "Oh man! (or woman!). That was gruesome. Wait a minute, have you just farted? Ewww! Ohh sorry, that one was mine."
+            "Oh man! (or woman!). That was gruesome. Wait a minute, have you just farted? Ewww! Ohh sorry, that one was mine.",
+            "Why did you do that? Such violence. Well you killed it, just like that. That's aliens haven't made contact with us yet...Savage!"
         ],
     },
     computed: {
@@ -227,15 +229,18 @@ new Vue({
 
         humanDied() {
             if (this.humanStatus == false) {
-                console.log('You are dead, like your dreams.');
+                var deathMessage = Math.round(Math.random() * 10);
+                console.log(this.humanDiesPhrases[deathMessage]);
             }
         },
 
         computerDied() {
             if (this.computerStatus == false) {
-                console.log('You killed him, or her, as always you did not ask.');
+                var deathMessage = Math.round(Math.random() * 10);
+                console.log(this.computerDiesPhrases[deathMessage]);
             }
         }
+
 
     }
 });
