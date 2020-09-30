@@ -2,15 +2,15 @@
     GENERAL
    ================ */
 
-body{
-    cursor:url("../img/finger.png") , pointer !important;
+body {
+    cursor: url("../img/finger.png"), pointer !important;
     background-color: black;
 }
 
-.lousyShadow{
-    -webkit-box-shadow: 5px 5px 5px 2px rgba(0,0,0,0.3);
-    -moz-box-shadow: 5px 5px 5px 2px rgba(0,0,0,0.3);
-    box-shadow: 5px 5px 5px 2px rgba(0,0,0,0.3);
+.lousyShadow {
+    -webkit-box-shadow: 5px 5px 5px 2px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 5px 5px 5px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 5px 5px 5px 2px rgba(0, 0, 0, 0.3);
 }
 
 /* ================
@@ -120,10 +120,10 @@ body{
     border-width: .2em .3em .5em .6em;
     font-size: 2em;
     font-weight: bolder;
-    outline:none;
+    outline: none;
     color: beige;
     font-family: 'Vinegar Stroke';
-    cursor:url("../img/finger.png") , pointer !important;
+    cursor: url("../img/finger.png"), pointer !important;
 }
 
 /* ================
@@ -132,7 +132,7 @@ body{
 
 /* Mute and unmute buttons */
 
-.muteButton{
+.muteButton {
     position: absolute;
     left: 20px;
     top: 45%;
@@ -145,7 +145,7 @@ body{
     opacity: 0.3;
 }
 
-.muteButton img{
+.muteButton img {
     height: 80%;
     width: 80%;
     position: absolute;
@@ -181,7 +181,7 @@ body{
     border-width: .2em .3em .5em .6em;
     position: relative;
     font-size: 200%;
-    color:black;
+    color: black;
     font-weight: bolder;
     line-height: 30px;
     display: flex;
@@ -205,9 +205,52 @@ body{
     z-index: 150;
 }
 
+
+/* Logger panel */
+
+.loggerPanel {
+    width: 60%;
+    height: 150px;
+    position: absolute;
+    top: 15%;
+    align-content: space-around;
+    display: flex;
+}
+
+.loggerPanel ul {
+    width: 100%;
+}
+
+.loggerPanel ul li {
+    text-align: center;
+    background-color: #ef5a28;
+    opacity: 0.75;
+    list-style-type: none;
+    border-radius: 5px;
+    height: 30px;
+    line-height: 28px;
+    color: white;
+    font-size: 1.1em;
+    font-variant-caps: all-small-caps;
+    margin-top: 2px;
+}
+
+.loggerPanel ul li:nth-child(2){
+    opacity: 0.5;
+}
+
+.loggerPanel ul li:nth-child(3){
+    opacity: 0.25;
+}
+
+.loggerPanel ul li:nth-child(4){
+    opacity: 0.1;
+}
+
+
 /* Players images */
 
-.fightingPit{
+.fightingPit {
     align-items: center;
     justify-content: space-around;
     display: flex;
@@ -217,7 +260,7 @@ body{
     top: 30%;
 }
 
-.fightingPit .fightingPosition{
+.fightingPit .fightingPosition {
     height: 65vh;
     width: 35vw;
     align-items: center;
@@ -226,19 +269,19 @@ body{
     flex-direction: column;
 }
 
-.fightingPit .fightingPosition img{
+.fightingPit .fightingPosition img {
     height: 100%;
     width: auto;
 }
 
-#avatarHuman > img{
+#avatarHuman>img {
     height: 75%;
     position: absolute;
     bottom: 0%;
     z-index: 100;
 }
 
-.fightingPit .fightingPosition .attackPanel{
+.fightingPit .fightingPosition .attackPanel {
     display: flex;
     flex-direction: row;
     width: 300px;
@@ -248,7 +291,7 @@ body{
     bottom: -3%;
 }
 
-.attackButton{
+.attackButton {
     width: 65px;
     height: 65px;
     border-radius: 50%;
@@ -262,19 +305,32 @@ body{
     justify-content: space-around;
 }
 
-.attackButton:active{
-    box-shadow: inset 5px 5px 5px 2px rgba(0,0,0,0.3);
+.attackButton:active {
+    box-shadow: inset 5px 5px 5px 2px rgba(0, 0, 0, 0.3);
     transform: scale(0.95);
 }
 
-.attackButton img{
-    height: 35px !important; 
+.attackButton img {
+    height: 35px !important;
     width: auto !important;
 }
 
 /* ================
     ANIMATIONS
    ================ */
+
+/* Logger animations */
+
+.logger-enter{
+    transition: all 1500ms ease-in-out;
+    opacity: 0;
+}
+
+.logger-leave{
+    transition: all 2s ease-in-out;
+    transform: translateX(10px);
+    opacity: 0;
+}
 
 /* Fadeout animations */
 

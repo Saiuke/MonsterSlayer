@@ -56,6 +56,13 @@
                     </div>
                 </div>
             </div>
+            <div class="loggerPanel">
+                <ul>
+                    <transition-group name="logger">
+                        <li :key="log" v-for="log in logger">{{log}}</li>
+                    </transition>
+                </ul>
+            </div>
             <div class="fightingPit">
                 <div class="fightingPosition" id="avatarHuman">
                     <img src="img/hyu.gif" alt="">

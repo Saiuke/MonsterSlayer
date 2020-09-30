@@ -127,6 +127,15 @@ new Vue({
                 this.clearHitter();
                 this.computerDied();
             }
+        },
+
+        /* Logger Wachter  - Maintain only the last 3 elements of the logger */
+
+        logger(){
+            console.log("Teste");
+            if (this.logger.length > 3) {
+                this.logger.pop();
+            }
         }
     },
     mounted() {},
@@ -185,7 +194,7 @@ new Vue({
                         this.healthComputer++;
                     }, 50);
                 }
-                this.logger.push('Human got hit and lost: ' + this.willHitPoints + ' hit points.');
+                this.logger.unshift('Human got hit and lost ' + this.willHitPoints + ' hit points.');
                 console.log('Human got hit and lost: ' + this.willHitPoints + ' hit points.');
 
             } else {
@@ -212,14 +221,14 @@ new Vue({
                     }, 50);
                 }
 
-                console.log('The "monster" got hit and lost: ' + this.willHitPoints + ' hit points.');
-                this.logger.push('The "monster" got hit and lost: ' + this.willHitPoints + ' hit points.');
+                console.log('The "monster" got hit and lost ' + this.willHitPoints + ' hit points.');
+                this.logger.unshift('The "monster" got hit and lost ' + this.willHitPoints + ' hit points.');
 
             } else {
                 if (this.computerStatus == false) {
                     this.computerDied();
                 } else {
-                    this.logger.push("You're too tired, take a breath and recover some energy before hitting again you potato's sack");
+                    this.logger.unshift("You're too tired, take a breath and recover some energy before hitting again you potato's sack");
                 }
             }
         },
@@ -238,7 +247,7 @@ new Vue({
             if (this.humanStatus == false) {
                 var deathMessage = Math.round(Math.random() * 10);
                 console.log(this.humanDiesPhrases[deathMessage]);
-                this.logger.push(this.humanDiesPhrases[deathMessage]);
+                this.logger.unshift(this.humanDiesPhrases[deathMessage]);
             }
         },
 
@@ -246,7 +255,7 @@ new Vue({
             if (this.computerStatus == false) {
                 var deathMessage = Math.round(Math.random() * 10);
                 console.log(this.computerDiesPhrases[deathMessage]);
-                this.logger.push(this.computerDiesPhrases[deathMessage]);
+                this.logger.unshift(this.computerDiesPhrases[deathMessage]);
             }
         }
 
