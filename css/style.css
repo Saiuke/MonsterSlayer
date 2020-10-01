@@ -235,16 +235,16 @@ body {
     margin-top: 2px;
 }
 
-.loggerPanel ul li:nth-child(2){
+.loggerPanel ul li:nth-child(2) {
     opacity: 0.5;
 }
 
-.loggerPanel ul li:nth-child(3){
+.loggerPanel ul li:nth-child(3) {
     opacity: 0.25;
 }
 
-.loggerPanel ul li:nth-child(4){
-    opacity: 0.1;
+.loggerPanel ul li:nth-child(4) {
+    opacity: 0;
 }
 
 
@@ -321,15 +321,34 @@ body {
 
 /* Logger animations */
 
-.logger-enter{
+/* .logger-enter {
     transition: all 1500ms ease-in-out;
     opacity: 0;
 }
 
-.logger-leave{
+.logger-leave {
     transition: all 2s ease-in-out;
     transform: translateX(10px);
     opacity: 0;
+} */
+
+.logger-item {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.logger-enter-active,
+.logger-leave-active {
+    transition: all 1s;
+}
+
+.logger-enter,
+.logger-leave-to
+
+/* .list-leave-active below version 2.1.8 */
+    {
+    opacity: 0;
+    transform: translateY(30px);
 }
 
 /* Fadeout animations */

@@ -222,7 +222,7 @@ new Vue({
                 }
 
                 console.log('The "monster" got hit and lost ' + this.willHitPoints + ' hit points.');
-                this.logger.unshift('The "monster" got hit and lost ' + this.willHitPoints + ' hit points.');
+                this.logger.unshift('The "monster" got hit and lost: ' + this.willHitPoints + ' hit points.');
 
             } else {
                 if (this.computerStatus == false) {
