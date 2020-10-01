@@ -108,7 +108,9 @@ new Vue({
                     clearInterval(this.hitTimer);
                     this.clearHitter();
                 }
-                this.hitHuman();
+                if (this.humanStatus == true && this.computerStatus == true) {
+                    this.hitHuman();
+                }
             }else{
                 if (this.hitCounter == this.willHitPoints) {
                     clearInterval(this.hitTimer);
