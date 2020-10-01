@@ -197,7 +197,7 @@ body {
     position: absolute;
     right: -1px;
     top: -1px;
-    transition: width 1s ease-in-out;
+    transition: width 500ms ease-out;
 }
 
 /* Text that indicates the health level */

@@ -142,7 +142,10 @@ new Vue({
             });
         },
 
-        /* HP monitoring and controller */
+        /*
+         HP monitoring and controller
+         These two functions return the css property 'width' of the health bars.
+         */
 
         heartMonitorHuman() {
             return {
@@ -155,13 +158,16 @@ new Vue({
                 width: this.healthComputer + '%'
             }
         },
+
         /* Generates random hit points */
+
         hitGenerator() {
             var hit = Math.round(Math.random() * 20);
             return hit;
         },
 
         /* Hits the human */
+
         hitHuman() {
             if (this.healthHuman < 100) {
                 var willHitPoints = this.hitGenerator();
@@ -174,7 +180,8 @@ new Vue({
             }
         },
 
-        //Hits the computer
+        /* Hits the computer */
+
         hitComputer() {
             if (this.healthComputer < 100) {
                 var willHitPoints = this.hitGenerator();
