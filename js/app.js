@@ -44,6 +44,12 @@ new Vue({
             "Oh man! (or woman!). That was gruesome. Wait a minute, have you just farted? Ewww! Ohh sorry, that one was mine.",
             "Why did you do that? Such violence. Well you killed it, just like that. That's aliens haven't made contact with us yet...Savage!"
         ],
+        humanParts: [
+            "groin", "left eye", "upper lip", "right ear", "left leg", "tiny finger", "balls", "right knee", "face", "head", "lung", "chest", "chin", "middle finger", "you know where", "neck", "nose", "foot", "ribs", "teeth",
+        ],
+        monsterParts: [
+            "center most tentacle", "foremost tooth", "tiny tentacle", "lady parts", "boy parts", "gum", "ass", "iris", "eyeball", "feelings", "wise tooth"
+        ],
         logger: new Array(), //Array responsible for storing all messages that will be shown to the player
 
     },
@@ -170,7 +176,7 @@ new Vue({
 
         hitHuman() {
             if (this.healthHuman < 100) {
-                var willHitPoints = this.hitGenerator();
+                var willHitPoints = this.hitGenerator() * 1.1; //Gives the monster 10% more attack power on average
                 this.healthHuman += willHitPoints ;
                 this.logHandler('Human got hit and lost ' + willHitPoints + ' HP');
 
@@ -230,5 +236,7 @@ new Vue({
         },
 
         /* Random hits generators */
+
+
     }
 });
