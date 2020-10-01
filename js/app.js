@@ -50,6 +50,7 @@ new Vue({
             "Why did you do that? Such violence. Well you killed it, just like that. That's aliens haven't made contact with us yet...Savage!"
         ],
         logger: new Array(), //Array responsible for storing all messages that will be shown to the player
+
     },
     computed: {
 
@@ -132,7 +133,6 @@ new Vue({
         /* Logger Wachter  - Maintain only the last 3 elements of the logger */
 
         logger(){
-            console.log("Teste");
             if (this.logger.length > 3) {
                 this.logger.pop();
             }
@@ -194,7 +194,7 @@ new Vue({
                         this.healthComputer++;
                     }, 50);
                 }
-                this.logger.unshift('Human got hit and lost ' + this.willHitPoints + ' hit points.');
+                this.logHandler('Human got hit and lost ' + this.willHitPoints + ' hit points.');
                 console.log('Human got hit and lost: ' + this.willHitPoints + ' hit points.');
 
             } else {
@@ -222,13 +222,13 @@ new Vue({
                 }
 
                 console.log('The "monster" got hit and lost ' + this.willHitPoints + ' hit points.');
-                this.logger.unshift('The "monster" got hit and lost: ' + this.willHitPoints + ' hit points.');
+                this.logHandler('The "monster" got hit and lost: ' + this.willHitPoints + ' hit points.');
 
             } else {
                 if (this.computerStatus == false) {
                     this.computerDied();
                 } else {
-                    this.logger.unshift("You're too tired, take a breath and recover some energy before hitting again you potato's sack");
+                    this.logHandler("You're too tired, take a breath and recover some energy before hitting again you potato's sack");
                 }
             }
         },
@@ -247,7 +247,7 @@ new Vue({
             if (this.humanStatus == false) {
                 var deathMessage = Math.round(Math.random() * 10);
                 console.log(this.humanDiesPhrases[deathMessage]);
-                this.logger.unshift(this.humanDiesPhrases[deathMessage]);
+                this.logHandler(this.humanDiesPhrases[deathMessage]);
             }
         },
 
@@ -255,10 +255,20 @@ new Vue({
             if (this.computerStatus == false) {
                 var deathMessage = Math.round(Math.random() * 10);
                 console.log(this.computerDiesPhrases[deathMessage]);
-                this.logger.unshift(this.computerDiesPhrases[deathMessage]);
+                this.logHandler(this.computerDiesPhrases[deathMessage]);
             }
-        }
+        },
 
+        keyGen(){
+            return '_' + Math.random().toString(36).substr(2, 9);
+        },
 
+        logHandler(msg){
+            var newLog = {
+                id: this.keyGen(),
+                message: msg,
+            };
+            this.logger.unshift(newLog);
+        },
     }
 });

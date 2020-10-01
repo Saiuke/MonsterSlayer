@@ -59,7 +59,7 @@
             <div class="loggerPanel">
                 <ul>
                     <transition-group name="logger">
-                        <li :key="log" v-for="log in logger">{{log}}</li>
+                        <li v-for="log in logger" :key="log.id">{{log.message}}</li>
                     </transition>
                 </ul>
             </div>
