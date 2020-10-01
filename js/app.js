@@ -96,6 +96,7 @@ new Vue({
 
         healthHuman() {
             if (this.healthHuman >= 100) {
+                this.healthHuman = 100;
                 this.humanStatus = false;
                 this.humanDied();
             }
@@ -103,6 +104,7 @@ new Vue({
 
         healthComputer() {
             if (this.healthComputer >= 100) {
+                this.healthComputer = 100;
                 this.computerStatus = false;
                 this.computerDied();
             }
@@ -155,19 +157,19 @@ new Vue({
         },
         /* Generates random hit points */
         hitGenerator() {
-            var hit = Math.round(Math.random() * 10);
+            var hit = Math.round(Math.random() * 20);
             return hit;
         },
 
         /* Hits the human */
         hitHuman() {
             if (this.healthHuman < 100) {
+                var willHitPoints = this.hitGenerator();
+                this.healthHuman += willHitPoints ;
+                this.logHandler('Human got hit and lost ' + willHitPoints + ' hit points.');
 
-                this.healthHuman+= this.hitGenerator();
-                this.logHandler('Human got hit and lost ' + this.willHitPoints + ' hit points.');
 
             } else {
-                console.log("That's dead meat, there is no point beating it anymore.");
                 this.humanDied();
             }
         },
@@ -175,9 +177,13 @@ new Vue({
         //Hits the computer
         hitComputer() {
             if (this.healthComputer < 100) {
-                
-                this.healthComputer += this.hitGenerator();
-                this.logHandler('The "monster" got hit and lost ' + this.willHitPoints + ' hit points.');
+                var willHitPoints = this.hitGenerator();
+                this.healthComputer += willHitPoints;
+                this.logHandler('The "monster" got hit and lost ' + willHitPoints + ' hit points.');
+
+                //Hits the human player back
+
+                this.hitHuman();
 
             } else {
                 this.computerDied();
