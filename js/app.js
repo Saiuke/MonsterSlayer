@@ -228,5 +228,7 @@ new Vue({
             };
             this.logger.unshift(newLog);
         },
+
+        /* Random hits generators */
     }
 });
