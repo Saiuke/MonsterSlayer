@@ -50,6 +50,9 @@ new Vue({
         monsterParts: [
             "center most tentacle", "foremost tooth", "tiny tentacle", "lady parts", "boy parts", "gum", "ass", "iris", "eyeball", "feelings", "wise tooth"
         ],
+        fightingMovements:[
+            "bite", "slapped", "punched", "kicked", "headbutted", "scratched", "hit", "punctured", "fingered", "poundded", "bashed"
+        ],
         logger: new Array(), //Array responsible for storing all messages that will be shown to the player
 
     },
@@ -178,7 +181,7 @@ new Vue({
             if (this.healthHuman < 100) {
                 var willHitPoints = Math.floor(this.hitGenerator() * 1.1); //Gives the monster 10% more attack power on average
                 this.healthHuman += willHitPoints ;
-                this.logHandler('You got hit on the ' + this.humanHitDesc() + ' and lost ' + willHitPoints + ' HP');
+                this.logHandler('You got ' + this.randomFightingMoves() + ' on the ' + this.humanHitDesc() + ' and lost ' + willHitPoints + ' HP');
 
 
             } else {
@@ -192,7 +195,7 @@ new Vue({
             if (this.healthComputer < 100) {
                 var willHitPoints = this.hitGenerator();
                 this.healthComputer += willHitPoints;
-                this.logHandler('You hit the "monster" on its ' + this.monsterHitDesc()  + ' and it lost ' + willHitPoints + ' HP');
+                this.logHandler('You ' + this.randomFightingMoves() + ' the monster\'s ' + this.monsterHitDesc()  + ' and it lost ' + willHitPoints + ' HP');
 
                 //Hits the human player back
 
@@ -245,6 +248,11 @@ new Vue({
         monsterHitDesc(){
             randomNumber = Math.round(Math.random() * 10);
             return this.monsterParts[randomNumber];
+        },
+
+        randomFightingMoves(){
+            randomNumber = Math.floor(Math.random() * 10);
+            return this.fightingMovements[randomNumber];
         }
 
     }
