@@ -172,7 +172,7 @@ new Vue({
             if (this.healthHuman < 100) {
                 var willHitPoints = this.hitGenerator();
                 this.healthHuman += willHitPoints ;
-                this.logHandler('Human got hit and lost ' + willHitPoints + ' hit points.');
+                this.logHandler('Human got hit and lost ' + willHitPoints + ' HP');
 
 
             } else {
@@ -186,7 +186,7 @@ new Vue({
             if (this.healthComputer < 100) {
                 var willHitPoints = this.hitGenerator();
                 this.healthComputer += willHitPoints;
-                this.logHandler('The "monster" got hit and lost ' + willHitPoints + ' hit points.');
+                this.logHandler('The "monster" got hit and lost ' + willHitPoints + ' HP');
 
                 //Hits the human player back
 
