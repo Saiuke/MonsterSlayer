@@ -176,9 +176,9 @@ new Vue({
 
         hitHuman() {
             if (this.healthHuman < 100) {
-                var willHitPoints = this.hitGenerator() * 1.1; //Gives the monster 10% more attack power on average
+                var willHitPoints = Math.floor(this.hitGenerator() * 1.1); //Gives the monster 10% more attack power on average
                 this.healthHuman += willHitPoints ;
-                this.logHandler('Human got hit and lost ' + willHitPoints + ' HP');
+                this.logHandler('You got hit on the ' + this.humanHitDesc() + ' and lost ' + willHitPoints + ' HP');
 
 
             } else {
@@ -192,7 +192,7 @@ new Vue({
             if (this.healthComputer < 100) {
                 var willHitPoints = this.hitGenerator();
                 this.healthComputer += willHitPoints;
-                this.logHandler('The "monster" got hit and lost ' + willHitPoints + ' HP');
+                this.logHandler('You hit the "monster" on its ' + this.monsterHitDesc()  + ' and it lost ' + willHitPoints + ' HP');
 
                 //Hits the human player back
 
@@ -237,6 +237,15 @@ new Vue({
 
         /* Random hits generators */
 
+        humanHitDesc(){
+            randomNumber = Math.round(Math.random() * 20);
+            return this.humanParts[randomNumber];
+        },
+
+        monsterHitDesc(){
+            randomNumber = Math.round(Math.random() * 10);
+            return this.monsterParts[randomNumber];
+        }
 
     }
 });
