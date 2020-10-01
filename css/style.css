@@ -197,6 +197,7 @@ body {
     position: absolute;
     right: -1px;
     top: -1px;
+    transition: width 1s ease-in-out;
 }
 
 /* Text that indicates the health level */
@@ -325,11 +326,6 @@ body {
    ================ */
 
 /* Logger animations */
-
-.logger-item {
-    display: inline-block;
-    margin-right: 10px;
-}
 
 .logger-enter-active,
 .logger-leave-active {

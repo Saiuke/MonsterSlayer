@@ -11,18 +11,14 @@ new Vue({
         The health points function in an inverse way. The subject dies when it reaches 100
         The health bar div width % is calculated subtracting the current health of the avatar of 100. 
         */
-        healthHuman: 0, 
+        healthHuman: 0,
         healthComputer: 0,
         muted: false, //Obviously determines if the audio is activated or not
-        hitTimer: null, //This variable stores the timer that reduces the health bar div. This is made using a timer so that the transition is smoother.
-        hitCounter: 0, //How many hit points the function has dealt in this turn
-        willHitPoints: 0, //How many hit points the function has to deal before next turn
         humanStatus: true, //Defines if the human player is dead or alive
         computerStatus: true, //Defines if the computer player is dead or alive
 
         /* Collection of string that are outputed when a avatar dies */
-        humanDiesPhrases:
-        [
+        humanDiesPhrases: [
             "You've just been killed and that's why you're seeing your own life flash in front of you.",
             "It's almost as if your soul has taken over your body in a frantic attempt to preserve the memory of what you love.",
             "The problem is that when your soul leaves your body, it's physically incapable of going back in and if it doesn't try to go back in and make the same decision, it could start experiencing the same things all over again.",
@@ -35,8 +31,7 @@ new Vue({
             "Oh my god, how can you suck in such idiotic game? I know that the game is lame, but you just raised the bar fella.",
             "You're not very good at this are you? Have you ever considered trying gardening?"
         ],
-        computerDiesPhrases:
-        [
+        computerDiesPhrases: [
             "You've just killed it! Or should I say him? Or her? You didn't ask, did you? How considerate of you.",
             "GG mah boy, keep it like this and I'm sure you're going places. Maybe...",
             "Wow that was 2 minutes less of your life, how does it feel? You're not having those back... Are you still reading?",
@@ -50,7 +45,6 @@ new Vue({
             "Why did you do that? Such violence. Well you killed it, just like that. That's aliens haven't made contact with us yet...Savage!"
         ],
         logger: new Array(), //Array responsible for storing all messages that will be shown to the player
-        puncherCheck: '', //Determines who is dealing the hit so the watcher may know if it should ask for a hitHuman() or not
 
     },
     computed: {
@@ -98,35 +92,11 @@ new Vue({
             }
         },
 
-        /* Hit Timers */
-
-        /* This function makes sure that the health bar don't go further than the hit points generated. To do so the function stops the hitTimer */
-
-        hitCounter() {
-            if (this.puncherCheck == 'human') {
-                if (this.hitCounter == this.willHitPoints) {
-                    clearInterval(this.hitTimer);
-                    this.clearHitter();
-                }
-                if (this.humanStatus == true && this.computerStatus == true) {
-                    this.hitHuman();
-                }
-            }else{
-                if (this.hitCounter == this.willHitPoints) {
-                    clearInterval(this.hitTimer);
-                    this.clearHitter();
-                }
-            }
-        },
-
         /* Health checkers // Killer */
 
         healthHuman() {
             if (this.healthHuman >= 100) {
                 this.humanStatus = false;
-                //Nulls the remaining hit points and hit counter
-                clearInterval(this.hitTimer);
-                this.clearHitter();
                 this.humanDied();
             }
         },
@@ -134,16 +104,13 @@ new Vue({
         healthComputer() {
             if (this.healthComputer >= 100) {
                 this.computerStatus = false;
-                //Nulls the remaining hit points and hit counter
-                clearInterval(this.hitTimer);
-                this.clearHitter();
                 this.computerDied();
             }
         },
 
         /* Logger Wachter  - Maintain only the last 3 elements of the logger */
 
-        logger(){
+        logger() {
             if (this.logger.length > 3) {
                 this.logger.pop();
             }
@@ -194,54 +161,26 @@ new Vue({
 
         /* Hits the human */
         hitHuman() {
-            if (this.healthHuman < 100 && this.hitTimer == null) {
-                this.willHitPoints = this.hitGenerator();
+            if (this.healthHuman < 100) {
 
-                /* This particular snippet makes the health bar lower in a smooth way */
-
-                if(this.willHitPoints != 0){
-                    this.hitTimer = setInterval(() => {
-                        this.hitCounter++;
-                        this.healthHuman++;
-                    }, 25);
-                }
-                this.puncherCheck = 'computer'; //Determines who is dealing the hit
+                this.healthHuman+= this.hitGenerator();
                 this.logHandler('Human got hit and lost ' + this.willHitPoints + ' hit points.');
-                console.log('Human got hit and lost' + this.willHitPoints + ' hit points.');
 
             } else {
-                if (this.humanStatus == false) {
-                    console.log("That's dead meat, there is no point beating it anymore.");
-                    this.humanDied();
-                } else {
-                    console.log("Savage, just savage!");
-                }
+                console.log("That's dead meat, there is no point beating it anymore.");
+                this.humanDied();
             }
         },
 
         //Hits the computer
         hitComputer() {
-            if (this.healthComputer < 100 && this.hitTimer == null) {
-                this.willHitPoints = this.hitGenerator();
+            if (this.healthComputer < 100) {
                 
-                /* This particular snippet makes the health bar lower in a smooth way */
-
-                if(this.willHitPoints != 0){
-                    this.hitTimer = setInterval(() => {
-                        this.hitCounter++;
-                        this.healthComputer++;
-                    }, 25);
-                }
-                this.puncherCheck = 'human'; //Determines who is dealing the hit
-                console.log('The "monster" got hit and lost ' + this.willHitPoints + ' hit points.');
+                this.healthComputer += this.hitGenerator();
                 this.logHandler('The "monster" got hit and lost ' + this.willHitPoints + ' hit points.');
 
             } else {
-                if (this.computerStatus == false) {
-                    this.computerDied();
-                } else {
-                    this.logHandler("You're too tired, take a breath and recover some energy before hitting again you potato's sack");
-                }
+                this.computerDied();
             }
         },
 
@@ -271,11 +210,11 @@ new Vue({
             }
         },
 
-        keyGen(){
+        keyGen() {
             return '_' + Math.random().toString(36).substr(2, 9);
         },
 
-        logHandler(msg){
+        logHandler(msg) {
             var newLog = {
                 id: this.keyGen(),
                 message: msg,
