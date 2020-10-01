@@ -50,6 +50,7 @@ new Vue({
             "Why did you do that? Such violence. Well you killed it, just like that. That's aliens haven't made contact with us yet...Savage!"
         ],
         logger: new Array(), //Array responsible for storing all messages that will be shown to the player
+        puncherCheck: '', //Determines who is dealing the hit so the watcher may know if it should ask for a hitHuman() or not
 
     },
     computed: {
@@ -102,9 +103,17 @@ new Vue({
         /* This function makes sure that the health bar don't go further than the hit points generated. To do so the function stops the hitTimer */
 
         hitCounter() {
-            if (this.hitCounter == this.willHitPoints) {
-                clearInterval(this.hitTimer);
-                this.clearHitter();
+            if (this.puncherCheck == 'human') {
+                if (this.hitCounter == this.willHitPoints) {
+                    clearInterval(this.hitTimer);
+                    this.clearHitter();
+                }
+                this.hitHuman();
+            }else{
+                if (this.hitCounter == this.willHitPoints) {
+                    clearInterval(this.hitTimer);
+                    this.clearHitter();
+                }
             }
         },
 
@@ -191,11 +200,12 @@ new Vue({
                 if(this.willHitPoints != 0){
                     this.hitTimer = setInterval(() => {
                         this.hitCounter++;
-                        this.healthComputer++;
-                    }, 50);
+                        this.healthHuman++;
+                    }, 25);
                 }
+                this.puncherCheck = 'computer'; //Determines who is dealing the hit
                 this.logHandler('Human got hit and lost ' + this.willHitPoints + ' hit points.');
-                console.log('Human got hit and lost: ' + this.willHitPoints + ' hit points.');
+                console.log('Human got hit and lost' + this.willHitPoints + ' hit points.');
 
             } else {
                 if (this.humanStatus == false) {
@@ -218,11 +228,11 @@ new Vue({
                     this.hitTimer = setInterval(() => {
                         this.hitCounter++;
                         this.healthComputer++;
-                    }, 50);
+                    }, 25);
                 }
-
+                this.puncherCheck = 'human'; //Determines who is dealing the hit
                 console.log('The "monster" got hit and lost ' + this.willHitPoints + ' hit points.');
-                this.logHandler('The "monster" got hit and lost: ' + this.willHitPoints + ' hit points.');
+                this.logHandler('The "monster" got hit and lost ' + this.willHitPoints + ' hit points.');
 
             } else {
                 if (this.computerStatus == false) {

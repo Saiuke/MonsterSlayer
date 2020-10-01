@@ -232,7 +232,13 @@ body {
     color: white;
     font-size: 1.1em;
     font-variant-caps: all-small-caps;
-    margin-top: 2px;
+    margin-top: 3px;
+}
+
+.loggerPanel ul li:nth-child(1) {
+    border-color: white;
+    border-style: solid;
+    border-width: 1px;
 }
 
 .loggerPanel ul li:nth-child(2) {
@@ -320,17 +326,6 @@ body {
    ================ */
 
 /* Logger animations */
-
-/* .logger-enter {
-    transition: all 1500ms ease-in-out;
-    opacity: 0;
-}
-
-.logger-leave {
-    transition: all 2s ease-in-out;
-    transform: translateX(10px);
-    opacity: 0;
-} */
 
 .logger-item {
     display: inline-block;
