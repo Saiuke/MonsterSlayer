@@ -265,7 +265,7 @@ new Vue({
 
         resetGame(){
             setTimeout(() => {
-                this.logger = null;
+                this.logger = [];
             }, 3000);
             this.healthHuman = 0;
             this.humanStatus = true;
