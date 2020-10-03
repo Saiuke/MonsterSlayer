@@ -212,6 +212,10 @@ new Vue({
             if (this.humanStatus == false) {
                 var deathMessage = Math.round(Math.random() * 10);
                 this.logHandler(this.humanDiesPhrases[deathMessage]);
+                this.logHandler("You died!");
+                setTimeout(() => {
+                    this.resetGame();
+                }, 3000);
             }
         },
 
@@ -219,6 +223,10 @@ new Vue({
             if (this.computerStatus == false) {
                 var deathMessage = Math.round(Math.random() * 10);
                 this.logHandler(this.computerDiesPhrases[deathMessage]);
+                this.logHandler("You win?");
+                setTimeout(() => {
+                    this.resetGame();
+                }, 3000);
             }
         },
 
@@ -253,6 +261,21 @@ new Vue({
         randomFightingMoves(){
             randomNumber = Math.floor(Math.random() * 10);
             return this.fightingMovements[randomNumber];
+        },
+
+        resetGame(){
+            setTimeout(() => {
+                this.logger = null;
+            }, 3000);
+            this.healthHuman = 0;
+            this.humanStatus = true;
+            this.healthComputer = 0;
+            this.computerStatus = true;
+            this.startTimer();
+        },
+
+        startTimer(){
+            return true;
         }
 
     }
