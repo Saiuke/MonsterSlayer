@@ -2,7 +2,8 @@
 new Vue({
     el: '#app',
     data: {
-        gameStatus: 'disclaimer', //Status of the app, it can be (so far) 'disclaimer', 'startScreen', 'playStage', 'looseScreen', 'wonScreen', 'menuScreen'
+        //gameStatus: 'disclaimer', //Status of the app, it can be (so far) 'disclaimer', 'startScreen', 'playStage', 'looseScreen', 'wonScreen', 'menuScreen'
+        gameStatus: 'playStage',
         backgroundAudio: new Array(), //Array of current playing background sounds
         blurFilter: true, //Blur shown at the start of the app
         audioTracks: ["sound/battle.mp3", "sound/dungeon.wav", "sound/echo.ogg"], //List of file in the folder 'sound'
@@ -50,9 +51,12 @@ new Vue({
         monsterParts: [
             "center most tentacle", "foremost tooth", "tiny tentacle", "lady parts", "boy parts", "gum", "ass", "iris", "eyeball", "feelings", "wise tooth"
         ],
-        fightingMovements:[
+        fightingMovements: [
             "bite", "slapped", "punched", "kicked", "headbutted", "scratched", "hit", "punctured", "fingered", "poundded", "bashed"
         ],
+        countDownNumbers: 5,
+        countDown: '',
+        countDownTextSize: 100,
         logger: new Array(), //Array responsible for storing all messages that will be shown to the player
 
     },
@@ -125,7 +129,24 @@ new Vue({
             if (this.logger.length > 3) {
                 this.logger.pop();
             }
+        },
+
+        /* Count Down Watcher */
+
+        countDownTextSize(){
+            if(this.countDownTextSize <= 0 && this.countDownNumbers > 0){
+                clearInterval(this.countDown);
+                this.countDownNumbers--;
+                this.countDownTextSize = 100;
+            }
+        },
+
+        countDownNumbers(){
+            if (this.countDownNumbers <= 0) {
+                clearInterval(this.countDown);
+            }
         }
+
     },
     mounted() {},
     created: function () {
@@ -175,12 +196,26 @@ new Vue({
             return hit;
         },
 
+        timerFight() {
+            if(this.countDownNumbers > 0){
+                this.countDown = setInterval(() => {
+                    --this.countDownTextSize;
+                }, 500);
+                return {
+                    'fontSize': this.countDownTextSize + 'vw'
+                }
+            }else{
+                clearInterval(this.countDown);
+                this.countDownTextSize = null;
+            }
+        },
+
         /* Hits the human */
 
         hitHuman() {
             if (this.healthHuman < 100) {
                 var willHitPoints = Math.floor(this.hitGenerator() * 1.1); //Gives the monster 10% more attack power on average
-                this.healthHuman += willHitPoints ;
+                this.healthHuman += willHitPoints;
                 this.logHandler('You got ' + this.randomFightingMoves() + ' on the ' + this.humanHitDesc() + ' and lost ' + willHitPoints + ' HP');
 
 
@@ -195,7 +230,7 @@ new Vue({
             if (this.healthComputer < 100) {
                 var willHitPoints = this.hitGenerator();
                 this.healthComputer += willHitPoints;
-                this.logHandler('You ' + this.randomFightingMoves() + ' the monster\'s ' + this.monsterHitDesc()  + ' and it lost ' + willHitPoints + ' HP');
+                this.logHandler('You ' + this.randomFightingMoves() + ' the monster\'s ' + this.monsterHitDesc() + ' and it lost ' + willHitPoints + ' HP');
 
                 //Hits the human player back
 
@@ -248,25 +283,23 @@ new Vue({
 
         /* Random hits generators */
 
-        humanHitDesc(){
+        humanHitDesc() {
             randomNumber = Math.round(Math.random() * 20);
             return this.humanParts[randomNumber];
         },
 
-        monsterHitDesc(){
+        monsterHitDesc() {
             randomNumber = Math.round(Math.random() * 10);
             return this.monsterParts[randomNumber];
         },
 
-        randomFightingMoves(){
+        randomFightingMoves() {
             randomNumber = Math.floor(Math.random() * 10);
             return this.fightingMovements[randomNumber];
         },
 
-        resetGame(){
-            setTimeout(() => {
-                this.logger = [];
-            }, 3000);
+        resetGame() {
+            this.logger = [];
             this.healthHuman = 0;
             this.humanStatus = true;
             this.healthComputer = 0;
@@ -274,7 +307,7 @@ new Vue({
             this.startTimer();
         },
 
-        startTimer(){
+        startTimer() {
             return true;
         }
 

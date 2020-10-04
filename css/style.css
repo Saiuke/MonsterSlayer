@@ -130,6 +130,31 @@ body {
     BATTLE SCREEN
    ================ */
 
+/* Count down */
+
+.countDown{
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-color: #ef5a28;
+    opacity: 0.5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 90vw;
+
+}
+
+.countDown span{
+    display: block;
+    height: 100%;
+    width: 100%;
+    color: white;
+    text-align: center;
+    line-height: 100vh;
+    font-family: stencil;
+}
+
 /* Mute and unmute buttons */
 
 .muteButton {
