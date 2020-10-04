@@ -24,26 +24,33 @@
                 <button class="growHover crookedButton lousyShadow" @click="gameStatus = 'startScreen'">PROCEED</button>
             </div>
         </transition>
-            <!-- Start screen banner -->
-            <div class="background redDungeon" :class="{blurFilter: flipBlur}">
-                <div class="startScreen pulseAnimation">
-                    <!-- Game banner -->
-                    <img src=" img/banner.png" alt="" srcset="">
-                    <!-- Play Button -->
-                    <button class="crookedButton growHover lousyShadow" @click="gameStatus = 'playStage'">PLAY</button>
-                </div>
+        <!-- Start screen banner -->
+        <div class="background redDungeon" :class="{blurFilter: flipBlur}">
+            <div class="startScreen pulseAnimation">
+                <!-- Game banner -->
+                <img src=" img/banner.png" alt="" srcset="">
+                <!-- Play Button -->
+                <button class="crookedButton growHover lousyShadow" @click="gameStatus = 'playStage'">PLAY</button>
             </div>
+        </div>
 
         <!-- Battle Arena -->
 
         <div class="battleArena background regularDungeon" v-if="gameStatus == 'playStage'">
 
             <!-- Mute and unmute button -->
-            
+
             <div class="muteButton crookedButton lousyShadow growHover" @click="muted = !muted">
                 <img src="img/speaker.svg" title="Unmute" v-if="muted == false">
                 <img src="img/mute.svg" title="Mute icon" v-else>
             </div>
+
+            <!-- Countdown -->
+            <div v-show="countDownNumbers >= 0" class="countDown" :style="[counterFontSize()]">
+                <span>{{countDownNumbers}}</span>
+            </div>
+            <!-- Score board -->
+
             <div class="scoreBoard">
                 <div class="score scoreHuman lousyShadow">
                     <span>{{100 - healthHuman}}%</span>
@@ -60,7 +67,7 @@
                 <ul>
                     <transition-group name="logger">
                         <li v-for="log in logger" :key="log.id">{{log.message}}</li>
-                    </transition>
+                        </transition>
                 </ul>
             </div>
             <div class="fightingPit">

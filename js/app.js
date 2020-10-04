@@ -3,7 +3,7 @@ new Vue({
     el: '#app',
     data: {
         //gameStatus: 'disclaimer', //Status of the app, it can be (so far) 'disclaimer', 'startScreen', 'playStage', 'looseScreen', 'wonScreen', 'menuScreen'
-        gameStatus: 'playStage',
+        gameStatus: 'disclaimer',
         backgroundAudio: new Array(), //Array of current playing background sounds
         blurFilter: true, //Blur shown at the start of the app
         audioTracks: ["sound/battle.mp3", "sound/dungeon.wav", "sound/echo.ogg"], //List of file in the folder 'sound'
@@ -54,9 +54,10 @@ new Vue({
         fightingMovements: [
             "bite", "slapped", "punched", "kicked", "headbutted", "scratched", "hit", "punctured", "fingered", "poundded", "bashed"
         ],
-        countDownNumbers: 5,
-        countDown: '',
-        countDownTextSize: 100,
+        countDownNumbers: -1, //Countdown counter =)
+        countDown: '', //Stores the main countdown
+        countDownTextSize: 100, //Obvious
+        textDownsizer: '', //Stores the timer responsible to downsize the font of the countdown
         logger: new Array(), //Array responsible for storing all messages that will be shown to the player
 
     },
@@ -88,8 +89,14 @@ new Vue({
                 this.loopPlay(echoSound);
                 this.loopPlay(dungeonSound);
             } else if (this.gameStatus == 'playStage') {
+                
+                //Add battle song to the background
+
                 this.loopPlay(battleSound);
                 battleSound.volume = 0.25;
+
+                //Trigger the coundown
+                this.startTimer();
             }
         },
 
@@ -135,13 +142,17 @@ new Vue({
         /* Countdown Watcher */
 
         countDownNumbers() {
-           if (this.countDownNumbers == 0) {
-               clearInterval(this.countDown);
-           }
+            this.countDownTextSize = 100;
+            if (this.countDownNumbers < 0) {
+                clearInterval(this.countDown);
+                clearInterval(this.textDownsizer);
+            }
         }
     },
 
-    mounted() {},
+    beforeDestroy() {
+        clearInterval(this.textDownsizer);
+    },
 
     created: function () {
         this.buildPlayList();
@@ -193,8 +204,10 @@ new Vue({
 
         /* Controlls the timer before the fight */
 
-        timerFight() {
-
+        counterFontSize() {
+            return {
+                'fontSize': this.countDownTextSize + 'vw'
+            }
         },
 
         /* Hits the human */
@@ -297,13 +310,15 @@ new Vue({
         /* Countdown timer before fight */
 
         startTimer() {
+            this.countDownNumbers = 5;
             if (this.countDownNumbers > 0) {
                 this.countDown = setInterval(() => {
                     this.countDownNumbers--;
-                    this.downSizeCounterFont();
                 }, 1000);
+                this.textDownsizer = setInterval(() => {
+                    this.countDownTextSize--
+                }, 10);
             }
-        }
-
+        },
     }
 });

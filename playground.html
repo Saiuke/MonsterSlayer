@@ -18,7 +18,7 @@
         <!-- Battle Arena -->
 
         <div class="battleArena background regularDungeon" v-if="gameStatus == 'playStage'">
-            <div class="countDown" :style="[timerFight()]"><span>{{countDownNumbers}}</span></div>
+            <div v-if="countDownNumbers >= 0" class="countDown" :style="[counterFontSize()]"><span>{{countDownNumbers}}</span></div>
         </div>
     </div>
     <!-- Js personalizado -->
