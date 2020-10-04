@@ -132,7 +132,7 @@ body {
 
 /* Count down */
 
-.countDown{
+.countDown {
     position: absolute;
     width: 100vw;
     height: 100vh;
@@ -145,7 +145,7 @@ body {
 
 }
 
-.countDown span{
+.countDown span {
     display: block;
     height: 100%;
     width: 100%;
@@ -153,6 +153,7 @@ body {
     text-align: center;
     line-height: 100vh;
     font-family: stencil;
+    transition: width 5000ms ease-in-out;
 }
 
 /* Mute and unmute buttons */

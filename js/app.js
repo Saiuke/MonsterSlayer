@@ -131,27 +131,22 @@ new Vue({
             }
         },
 
-        /* Count Down Watcher */
 
-        countDownTextSize(){
-            if(this.countDownTextSize <= 0 && this.countDownNumbers > 0){
-                clearInterval(this.countDown);
-                this.countDownNumbers--;
-                this.countDownTextSize = 100;
-            }
-        },
+        /* Countdown Watcher */
 
-        countDownNumbers(){
-            if (this.countDownNumbers <= 0) {
-                clearInterval(this.countDown);
-            }
+        countDownNumbers() {
+           if (this.countDownNumbers == 0) {
+               clearInterval(this.countDown);
+           }
         }
-
     },
+
     mounted() {},
+
     created: function () {
         this.buildPlayList();
     },
+
     methods: {
 
         /* Background soundtracks and sound effects */
@@ -196,18 +191,10 @@ new Vue({
             return hit;
         },
 
+        /* Controlls the timer before the fight */
+
         timerFight() {
-            if(this.countDownNumbers > 0){
-                this.countDown = setInterval(() => {
-                    --this.countDownTextSize;
-                }, 500);
-                return {
-                    'fontSize': this.countDownTextSize + 'vw'
-                }
-            }else{
-                clearInterval(this.countDown);
-                this.countDownTextSize = null;
-            }
+
         },
 
         /* Hits the human */
@@ -307,8 +294,15 @@ new Vue({
             this.startTimer();
         },
 
+        /* Countdown timer before fight */
+
         startTimer() {
-            return true;
+            if (this.countDownNumbers > 0) {
+                this.countDown = setInterval(() => {
+                    this.countDownNumbers--;
+                    this.downSizeCounterFont();
+                }, 1000);
+            }
         }
 
     }
