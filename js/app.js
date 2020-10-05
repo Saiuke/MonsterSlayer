@@ -2,8 +2,7 @@
 new Vue({
     el: '#app',
     data: {
-        //gameStatus: 'disclaimer', //Status of the app, it can be (so far) 'disclaimer', 'startScreen', 'playStage', 'looseScreen', 'wonScreen', 'menuScreen'
-        gameStatus: 'disclaimer',
+        gameStatus: 'disclaimer', //Status of the app, it can be (so far) 'disclaimer', 'startScreen', 'playStage', 'looseScreen', 'wonScreen', 'menuScreen'
         backgroundAudio: new Array(), //Array of current playing background sounds
         blurFilter: true, //Blur shown at the start of the app
         audioTracks: ["sound/battle.mp3", "sound/dungeon.wav", "sound/echo.ogg"], //List of file in the folder 'sound'
@@ -54,11 +53,12 @@ new Vue({
         fightingMovements: [
             "bite", "slapped", "punched", "kicked", "headbutted", "scratched", "hit", "punctured", "fingered", "poundded", "bashed"
         ],
-        countDownNumbers: -1, //Countdown counter =)
+        countDownNumbers: 5, //Countdown counter =)
         countDown: '', //Stores the main countdown
         countDownTextSize: 100, //Obvious
         textDownsizer: '', //Stores the timer responsible to downsize the font of the countdown
         logger: new Array(), //Array responsible for storing all messages that will be shown to the player
+        countDownPanel: false, //Determines if the countdown is to be shown or not
 
     },
     computed: {
@@ -144,8 +144,11 @@ new Vue({
         countDownNumbers() {
             this.countDownTextSize = 100;
             if (this.countDownNumbers < 0) {
-                clearInterval(this.countDown);
                 clearInterval(this.textDownsizer);
+                this.textDownsizer = null;
+                clearInterval(this.countDown);
+                this.countDown = null;
+                this.countDownPanel = false;
             }
         }
     },
@@ -227,7 +230,7 @@ new Vue({
         /* Hits the computer */
 
         hitComputer() {
-            if (this.healthComputer < 100) {
+            if (this.healthComputer < 100 && this.countDownNumbers <= 0) {
                 var willHitPoints = this.hitGenerator();
                 this.healthComputer += willHitPoints;
                 this.logHandler('You ' + this.randomFightingMoves() + ' the monster\'s ' + this.monsterHitDesc() + ' and it lost ' + willHitPoints + ' HP');
@@ -284,12 +287,12 @@ new Vue({
         /* Random hits generators */
 
         humanHitDesc() {
-            randomNumber = Math.round(Math.random() * 20);
+            randomNumber = Math.floor(Math.random() * 20);
             return this.humanParts[randomNumber];
         },
 
         monsterHitDesc() {
-            randomNumber = Math.round(Math.random() * 10);
+            randomNumber = Math.floor(Math.random() * 10);
             return this.monsterParts[randomNumber];
         },
 
@@ -304,19 +307,20 @@ new Vue({
             this.humanStatus = true;
             this.healthComputer = 0;
             this.computerStatus = true;
+            this.countDownNumbers = 5;
             this.startTimer();
         },
 
         /* Countdown timer before fight */
 
         startTimer() {
-            this.countDownNumbers = 5;
+            this.countDownPanel = true;
             if (this.countDownNumbers > 0) {
                 this.countDown = setInterval(() => {
                     this.countDownNumbers--;
                 }, 1000);
                 this.textDownsizer = setInterval(() => {
-                    this.countDownTextSize--
+                    this.countDownTextSize = this.countDownTextSize;
                 }, 10);
             }
         },
