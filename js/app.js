@@ -320,7 +320,7 @@ new Vue({
                     this.countDownNumbers--;
                 }, 1000);
                 this.textDownsizer = setInterval(() => {
-                    this.countDownTextSize = this.countDownTextSize;
+                    this.countDownTextSize--;
                 }, 10);
             }
         },
