@@ -352,29 +352,8 @@ body {
     ANIMATIONS
    ================ */
 
-/* Countdown color animation */
+/* Countdown animation */
 
-@keyframes lightSeizure {
-    0% {
-        background-color: #ff0000;
-    }
-
-    25% {
-        background-color: #ff7300;
-    }
-
-    50% {
-        background-color: #ffee00;
-    }
-
-    75% {
-        background-color: #ff7300;
-    }
-
-    100% {
-        background-color: #ff0000;
-    }
-}
 
 /* Logger animations */
 
