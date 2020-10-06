@@ -1,4 +1,3 @@
-/* var startScreenAudio = new Audio('sound/echo.ogg'); */
 new Vue({
     el: '#app',
     data: {
@@ -89,7 +88,7 @@ new Vue({
                 this.loopPlay(echoSound);
                 this.loopPlay(dungeonSound);
             } else if (this.gameStatus == 'playStage') {
-                
+
                 //Add battle song to the background
 
                 this.loopPlay(battleSound);
