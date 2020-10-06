@@ -142,7 +142,7 @@ new Vue({
 
         countDownNumbers() {
             this.countDownTextSize = 100;
-            if (this.countDownNumbers < 0) {
+            if (this.countDownNumbers === 0) {
                 clearInterval(this.textDownsizer);
                 this.textDownsizer = null;
                 clearInterval(this.countDown);
@@ -312,7 +312,7 @@ new Vue({
 
         /* Countdown timer before fight */
 
-        startTimer() {
+        /* startTimer() {
             this.countDownPanel = true;
             if (this.countDownNumbers > 0) {
                 this.countDown = setInterval(() => {
@@ -322,6 +322,31 @@ new Vue({
                     this.countDownTextSize--;
                 }, 10);
             }
-        },
+        }, */
+        startTimer() {
+            this.countDownPanel = true;
+            clearInterval(this.countDown);
+            this.countDown = null;
+            clearInterval(this.textDownsizer);
+            this.textDownsizer = null;
+
+            if (this.countDownNumbers > 0) {
+                this.countDown = setInterval(() => {
+                    this.countDownNumbers--;
+
+                    if (this.countDownNumbers <= 0) {
+                        clearInterval(this.textDownsizer);
+                        this.textDownsizer = null;
+                        clearInterval(this.countDown);
+                        this.countDown = null;
+                        this.countDownPanel = false;
+                    }
+                }, 1000);
+
+                this.textDownsizer = setInterval(() => {
+                    this.countDownTextSize--;
+                }, 10);
+            }
+        }
     }
 });
