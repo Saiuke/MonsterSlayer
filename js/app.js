@@ -312,17 +312,6 @@ new Vue({
 
         /* Countdown timer before fight */
 
-        /* startTimer() {
-            this.countDownPanel = true;
-            if (this.countDownNumbers > 0) {
-                this.countDown = setInterval(() => {
-                    this.countDownNumbers--;
-                }, 1000);
-                this.textDownsizer = setInterval(() => {
-                    this.countDownTextSize--;
-                }, 10);
-            }
-        }, */
         startTimer() {
             this.countDownPanel = true;
             clearInterval(this.countDown);
@@ -347,6 +336,14 @@ new Vue({
                     this.countDownTextSize--;
                 }, 10);
             }
-        }
+        },
+
+        useShield(){
+
+        },
+
+        usePotion(){
+
+        },
     }
 });
