@@ -152,6 +152,12 @@ new Vue({
                 this.countDown = null;
                 this.countDownPanel = false;
             }
+        },
+
+        shieldStatus(){
+            if (this.shieldStatus < 0) {
+                this.shieldStatus = 0;
+            }
         }
     },
 
