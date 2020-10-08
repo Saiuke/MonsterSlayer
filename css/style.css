@@ -344,8 +344,26 @@ body {
 }
 
 .attackButton img {
+    position: absolute;
     height: 35px !important;
     width: auto !important;
+}
+
+.attackButton > span{
+    margin-right: -60px;
+    margin-top: -40px;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    line-height: 20px;
+    color: white;
+    font-weight: bold;
+    border-color: #ef5a28;
+    background-color: #1b75bb;
+    z-index: 175;
+    border-style: inset;
+    border-width: 3px;
 }
 
 /* ================
