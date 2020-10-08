@@ -58,6 +58,7 @@ new Vue({
         textDownsizer: '', //Stores the timer responsible to downsize the font of the countdown
         logger: new Array(), //Array responsible for storing all messages that will be shown to the player
         countDownPanel: false, //Determines if the countdown is to be shown or not
+        shield: false, //Determines the status of the shield
 
     },
     computed: {
@@ -216,10 +217,23 @@ new Vue({
 
         hitHuman() {
             if (this.healthHuman < 100) {
-                var willHitPoints = Math.floor(this.hitGenerator() * 1.1); //Gives the monster 10% more attack power on average
+                //Hit modifier - Determines if the hit will be less than normal if the human is using a shield or potion
+                var hitMod = 1.1;
+                var shieldEfect = 0;
+                if (this.shield == true) {
+                    shieldEfect = (Math.floor(Math.random() * 10) + 1) / 20;
+                    hitMod = hitMod - shieldEfect;
+                    console.log(shieldEfect);
+                    console.log('hitMod = ' + hitMod);
+                };
+                var willHitPoints = Math.floor(this.hitGenerator() * hitMod); //Gives the monster 10% more attack power on average
                 this.healthHuman += willHitPoints;
                 this.logHandler('You got ' + this.randomFightingMoves() + ' on the ' + this.humanHitDesc() + ' and lost ' + willHitPoints + ' HP');
-
+                if (this.shield == true) {
+                    console.log(shieldEfect);
+                    this.logHandler('Your shield got ' + shieldEfect * 100 + '% of that blow!');
+                    this.shield = false;
+                }
 
             } else {
                 this.humanDied();
@@ -338,11 +352,12 @@ new Vue({
             }
         },
 
-        useShield(){
-
+        useShield() {
+            this.shield = true;
+            this.hitComputer();
         },
 
-        usePotion(){
+        usePotion() {
 
         },
     }
