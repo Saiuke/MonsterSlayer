@@ -60,7 +60,7 @@ new Vue({
         countDownPanel: false, //Determines if the countdown is to be shown or not
         shield: false, //Determines the status of the shield - Raised or not raised
         shieldStatus: 10, //Health of the shield, if reaches 0 the shield is not usable anymore
-        numberOfPotions: 3;
+        numberOfPotions: 3,
 
     },
     computed: {
@@ -385,7 +385,19 @@ new Vue({
         },
 
         usePotion() {
-
+            if (this.countDownNumbers <= 0) {
+                if (this.numberOfPotions > 0 && this.healthHuman != 0) {
+                    var potionEffect = (Math.floor(Math.random() * 30) + 1); //Effect of the potion between 0% and 30% 
+                    this.healthHuman -= potionEffect;
+                    this.numberOfPotions--;
+                    this.logHandler('You used a potion and got ' + potionEffect + ' HP restored. You have ' + this.numberOfPotions + '  potions left');
+                } else if (this.numberOfPotions <= 0) {
+                    this.logHandler('You have no more potions, your fucking addict, controll yourself!');
+                } else {
+                    this.numberOfPotions--;
+                    this.logHandler('You just drank a potion without needing one your potato head! Now you got ' + this.numberOfPotions + '  potions left');
+                }
+            }
         },
     }
 });
