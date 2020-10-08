@@ -58,7 +58,8 @@ new Vue({
         textDownsizer: '', //Stores the timer responsible to downsize the font of the countdown
         logger: new Array(), //Array responsible for storing all messages that will be shown to the player
         countDownPanel: false, //Determines if the countdown is to be shown or not
-        shield: false, //Determines the status of the shield
+        shield: false, //Determines the status of the shield - Raised or not raised
+        shieldStatus: 10, //Health of the shield, if reaches 0 the shield is not usable anymore
 
     },
     computed: {
@@ -218,22 +219,38 @@ new Vue({
         hitHuman() {
             if (this.healthHuman < 100) {
                 //Hit modifier - Determines if the hit will be less than normal if the human is using a shield or potion
-                var hitMod = 1.1;
+
+                var hitMod = 1.1; //The monster normally has a +10% hit power.
                 var shieldEfect = 0;
-                if (this.shield == true) {
-                    shieldEfect = (Math.floor(Math.random() * 10) + 1) / 20;
-                    hitMod = hitMod - shieldEfect;
-                    console.log(shieldEfect);
-                    console.log('hitMod = ' + hitMod);
-                };
-                var willHitPoints = Math.floor(this.hitGenerator() * hitMod); //Gives the monster 10% more attack power on average
-                this.healthHuman += willHitPoints;
-                this.logHandler('You got ' + this.randomFightingMoves() + ' on the ' + this.humanHitDesc() + ' and lost ' + willHitPoints + ' HP');
-                if (this.shield == true) {
-                    console.log(shieldEfect);
-                    this.logHandler('Your shield got ' + shieldEfect * 100 + '% of that blow!');
-                    this.shield = false;
+
+                //Determines randomly the effect of the shield. It will lower the monster attack between 0% and 50%. 
+
+                if (this.shield == true && this.shieldStatus > 0) {
+                    shieldEfect = (Math.floor(Math.random() * 10) + 1) / 2; //Random number between 0 and 5
+                    hitMod = hitMod - shieldEfect / 10; //Reduces the force of the blow in between 0% and 50%
                 }
+
+                if (this.shield == true && this.shieldStatus > 0) {
+
+                    this.shieldStatus = this.shieldStatus - shieldEfect; //Lower the shieldStatus between 0 and 5 points
+
+                    //Choose whate message to show, if the shield is not broken says what is its status, on the contrary, says that it's broken
+                    if (this.shieldStatus <= 0) {
+                        this.logHandler('Your shield got ' + shieldEfect * 10 + '% of that blow! Your shield is broken!');
+                        this.shield = false;
+                    } else {
+                        this.logHandler('Your shield got ' + shieldEfect * 10 + '% of that blow! Your shield contidion is ' + this.shieldStatus);
+                        this.shield = false;
+                    }
+                }
+
+                var willHitPoints = Math.floor(this.hitGenerator() * hitMod); //Add the hit advantage to the normal hit power of the monster
+
+                this.healthHuman += willHitPoints; //Decreases the human health
+
+                //Messages shown if no shield is used
+
+                this.logHandler('You got ' + this.randomFightingMoves() + ' on the ' + this.humanHitDesc() + ' and lost ' + willHitPoints + ' HP');
 
             } else {
                 this.humanDied();
@@ -353,8 +370,15 @@ new Vue({
         },
 
         useShield() {
-            this.shield = true;
-            this.hitComputer();
+            if (this.shieldStatus > 0 && this.countDownNumbers <= 0) {
+                this.shield = true;
+                this.hitComputer();
+            } else {
+                if (this.countDownNumbers <= 0) {
+                    this.hitHuman();
+                    this.logHandler('Your shield is broken dude!');
+                }
+            }
         },
 
         usePotion() {
