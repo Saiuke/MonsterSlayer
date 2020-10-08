@@ -60,6 +60,7 @@ new Vue({
         countDownPanel: false, //Determines if the countdown is to be shown or not
         shield: false, //Determines the status of the shield - Raised or not raised
         shieldStatus: 10, //Health of the shield, if reaches 0 the shield is not usable anymore
+        numberOfPotions: 3;
 
     },
     computed: {
@@ -336,6 +337,8 @@ new Vue({
             this.healthHuman = 0;
             this.humanStatus = true;
             this.healthComputer = 0;
+            this.shieldStatus = 10;
+            this.numberOfPotions = 3;
             this.computerStatus = true;
             this.countDownNumbers = 5;
             this.startTimer();
