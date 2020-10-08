@@ -349,7 +349,7 @@ body {
     width: auto !important;
 }
 
-.attackButton > span{
+.attackButton>span {
     margin-right: -60px;
     margin-top: -40px;
     border-radius: 50%;

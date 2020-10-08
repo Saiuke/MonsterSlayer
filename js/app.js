@@ -154,7 +154,7 @@ new Vue({
             }
         },
 
-        shieldStatus(){
+        shieldStatus() {
             if (this.shieldStatus < 0) {
                 this.shieldStatus = 0;
             }
