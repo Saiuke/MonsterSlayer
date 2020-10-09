@@ -227,7 +227,7 @@ new Vue({
             if (this.healthHuman < 100) {
                 //Hit modifier - Determines if the hit will be less than normal if the human is using a shield or potion
 
-                var hitMod = 1.1; //The monster normally has a +10% hit power.
+                var hitMod = 1.2; //The monster normally has a +20% hit power.
                 var shieldEfect = 0;
 
                 //Determines randomly the effect of the shield. It will lower the monster attack between 0% and 50%. 
