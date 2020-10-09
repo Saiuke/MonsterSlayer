@@ -118,7 +118,7 @@ new Vue({
 
         healthHuman() {
             if (this.healthHuman >= 100) {
-                this.healthHuman = 100;
+                this.healthHuman = 100; //Avoid negative health
                 this.humanStatus = false;
                 this.humanDied();
             }
@@ -126,7 +126,7 @@ new Vue({
 
         healthComputer() {
             if (this.healthComputer >= 100) {
-                this.healthComputer = 100;
+                this.healthComputer = 100; //Avoid negative health
                 this.computerStatus = false;
                 this.computerDied();
             }
