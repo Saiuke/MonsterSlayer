@@ -233,6 +233,14 @@ body {
     z-index: 150;
 }
 
+.versus img{
+    width: 120px;
+    height: auto;
+    position: absolute;
+    z-index: 300;
+    left: -58px;
+    top: -32px;
+}
 
 /* Logger panel */
 
