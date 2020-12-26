@@ -7,6 +7,11 @@ body {
     background-color: black;
 }
 
+/* Disables double-tap on mobile devices */
+body ~ * {
+    touch-action: manipulation;
+}
+
 .lousyShadow {
     -webkit-box-shadow: 5px 5px 5px 2px rgba(0, 0, 0, 0.3);
     -moz-box-shadow: 5px 5px 5px 2px rgba(0, 0, 0, 0.3);
