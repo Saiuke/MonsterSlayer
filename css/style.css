@@ -168,6 +168,8 @@ body {
     text-align: center;
     line-height: 100vh;
     font-family: stencil;
+    font-family: 'Stencil';
+    src: url('../font/Stencil.ttf');
     transition: width 5000ms ease-in-out;
 }
 
