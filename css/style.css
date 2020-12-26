@@ -2,13 +2,25 @@
     GENERAL
    ================ */
 
+@media screen and (min-width: 320px) and (max-width: 767px) and (orientation: landscape) {
+    html {
+        transform: rotate(-90deg);
+        transform-origin: left top;
+        width: 100vh;
+        overflow-x: hidden;
+        position: absolute;
+        top: 100%;
+        left: 0;
+    }
+}
+
 body {
     cursor: url("../img/finger.png"), pointer !important;
     background-color: black;
 }
 
 /* Disables double-tap on mobile devices */
-body ~ * {
+body~* {
     touch-action: manipulation;
 }
 
@@ -238,7 +250,7 @@ body ~ * {
     z-index: 150;
 }
 
-.versus img{
+.versus img {
     width: 120px;
     height: auto;
     position: absolute;
