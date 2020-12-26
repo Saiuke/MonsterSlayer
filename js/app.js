@@ -50,7 +50,7 @@ new Vue({
             "center most tentacle", "foremost tooth", "tiny tentacle", "lady parts", "boy parts", "gum", "ass", "iris", "eyeball", "feelings", "wise tooth"
         ],
         fightingMovements: [
-            "bite", "slapped", "punched", "kicked", "headbutted", "scratched", "hit", "punctured", "fingered", "poundded", "bashed"
+            "bit", "slapped", "punched", "kicked", "headbutted", "scratched", "hit", "punctured", "fingered", "poundded", "bashed"
         ],
         countDownNumbers: 5, //Countdown counter =)
         countDown: '', //Stores the main countdown
