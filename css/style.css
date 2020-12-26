@@ -17,10 +17,7 @@
 body {
     cursor: url("../img/finger.png"), pointer !important;
     background-color: black;
-}
-
-/* Disables double-tap on mobile devices */
-body~* {
+    /* Disables double-tap on mobile devices */
     touch-action: manipulation;
 }
 

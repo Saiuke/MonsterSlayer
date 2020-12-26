@@ -1,3 +1,34 @@
+/* Please rotate options */
+
+var PleaseRotateOptions = {
+    startOnPageLoad: true,
+    onHide: function(){},
+    onShow: function(){},
+    forcePortrait: false,
+    message: "Please Rotate Your Device",
+    subMessage: "",
+    allowClickBypass: false,
+    onlyMobile: true,
+    zIndex: 1000,
+    iconNode: null
+};
+
+window.addEventListener("deviceorientation", handleOrientation, true);
+
+ function handleOrientation(){
+    console.log(window.screen.orientation);
+}
+
+PleaseRotate.start(PleaseRotateOptions);
+
+if(document.querySelector(".pleaserotate-hiding")){
+    console.log('Detected');
+    document.querySelector("#pleaserotate-backdrop").remove();
+    console.log("Got it")
+    /* document.querySelector('.pleaserotate-backdrop');
+elem.parentNode.removeChild(elem); */
+}
+
 new Vue({
     el: '#app',
     data: {
@@ -407,3 +438,4 @@ new Vue({
         },
     }
 });
+
