@@ -102,6 +102,8 @@ new Vue({
             }
         },
 
+        /* Mute button function */
+        
         muted() {
             if (this.muted == true) {
                 this.backgroundAudio.forEach(element => {
@@ -407,4 +409,3 @@ new Vue({
         },
     }
 });
-
