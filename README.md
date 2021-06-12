@@ -4,5 +4,5 @@ You can check out a demo version of the app right [here!](https://saiuke.github.
 
 Here's a screenshot of the app:
 
-![Simple JavaScript shopping cart](./img/screenshot.png?raw=true "Simple JavaScript turn-based battle game")
+![Simple JavaScript turn-based battle game](./img/screenshot.png?raw=true "Simple JavaScript turn-based battle game")
 
